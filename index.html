@@ -2,18 +2,22 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>حياتي | My Life</title>
 
 <link rel="icon" type="image/png"
 href="A632EA99-79D1-4A97-83E8-B8BBD092EFC0.png">
 
-<style>
+<link rel="apple-touch-icon"
+href="A632EA99-79D1-4A97-83E8-B8BBD092EFC0.png">
 
-*{
-  box-sizing:border-box;
-}
+<meta name="theme-color" content="#171717">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<style>
+*{box-sizing:border-box}
 
 html{
   scroll-behavior:smooth;
@@ -21,530 +25,706 @@ html{
 
 body{
   margin:0;
-  font-family:Arial,"Tahoma",sans-serif;
-  background:#f7f5f0;
-  color:#252525;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif;
+  color:#202020;
+  background:#f6f5f1;
+  -webkit-tap-highlight-color:transparent;
 }
 
 button,input,textarea,select{
-  font-family:inherit;
+  font:inherit;
 }
 
 button{
   cursor:pointer;
 }
 
-.app{
-  max-width:600px;
-  margin:auto;
-  min-height:100vh;
-  padding-bottom:90px;
+input,textarea,select{
+  outline:none;
 }
 
-/* =========================
-   GENERAL
-========================= */
+.app{
+  width:100%;
+  max-width:680px;
+  min-height:100vh;
+  margin:auto;
+  padding-bottom:105px;
+}
+
+/* =====================================================
+   SECTIONS
+===================================================== */
 
 .section{
   display:none;
-  padding:15px;
-  animation:fade .25s ease;
+  min-height:100vh;
+  padding-bottom:30px;
+  animation:pageIn .28s ease;
 }
 
 .section.active{
   display:block;
 }
 
-@keyframes fade{
-  from{opacity:0;transform:translateY(8px)}
-  to{opacity:1;transform:translateY(0)}
+@keyframes pageIn{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
-.top{
-  padding:28px 20px 18px;
+.page{
+  padding:24px 17px;
 }
 
-.backTitle{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.pageHeader{
+  padding:28px 18px 18px;
 }
 
-.pageTitle{
-  font-size:29px;
-  margin:5px 0;
-}
-
-.pageSub{
-  color:#777;
-  line-height:1.6;
-  margin-top:5px;
-}
-
-.small{
-  font-size:13px;
-  color:#777;
-  line-height:1.7;
-}
-
-button.primary{
-  border:0;
-  border-radius:15px;
-  padding:13px 18px;
-  width:100%;
-  font-weight:bold;
-  color:white;
-  margin-top:8px;
-}
-
-input,textarea,select{
-  width:100%;
-  border:1px solid #ddd;
-  background:white;
-  padding:13px;
-  border-radius:13px;
-  margin:5px 0;
-  font-size:15px;
-  color:#333;
-}
-
-textarea{
-  min-height:100px;
-  resize:vertical;
-}
-
-/* =========================
-   HOME
-========================= */
-
-#home{
-  background:
-    radial-gradient(circle at 90% 5%,#e9dcff 0,transparent 30%),
-    radial-gradient(circle at 0 45%,#dff5ef 0,transparent 30%),
-    #faf9f5;
-  min-height:100vh;
-}
-
-.homeHero{
-  padding:35px 20px 25px;
-}
-
-.homeHero .symbol{
-  font-size:48px;
-}
-
-.homeHero h1{
-  font-size:38px;
-  margin:8px 0 2px;
+.pageHeader h1{
+  margin:4px 0;
+  font-size:31px;
   letter-spacing:-1px;
 }
 
-.homeHero p{
-  color:#777;
-  margin:0;
+.pageHeader p{
+  margin:5px 0 0;
+  line-height:1.7;
+  opacity:.68;
+  font-size:14px;
 }
 
-.todayBox{
-  margin-top:20px;
-  background:#202020;
-  color:white;
-  border-radius:25px;
-  padding:22px;
-  box-shadow:0 12px 35px rgba(0,0,0,.14);
+.small{
+  font-size:12px;
+  line-height:1.7;
+  opacity:.65;
 }
 
-.todayBox .date{
-  color:#bbb;
-  font-size:13px;
-}
-
-.todayBox .focus{
-  font-size:24px;
-  font-weight:bold;
-  margin:10px 0;
-}
-
-.homeProgress{
-  height:8px;
-  background:#444;
-  border-radius:20px;
-  overflow:hidden;
-}
-
-.homeProgress div{
-  height:100%;
-  width:0;
-  background:#d7ff6f;
-  transition:.4s;
-}
-
-.homeStats{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:12px;
-}
-
-.stat{
-  background:white;
-  border-radius:20px;
-  padding:18px;
-  border:1px solid #eee;
-}
-
-.stat strong{
-  display:block;
-  font-size:25px;
-  margin-top:5px;
-}
-
-.homeQuote{
-  margin-top:15px;
-  padding:25px 20px;
-  border-radius:24px;
-  background:#efe9ff;
-  color:#55446d;
-  line-height:1.8;
-  font-weight:bold;
-}
-
-/* =========================
-   BOTTOM NAV
-========================= */
-
-.bottomNav{
-  position:fixed;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:min(600px,100%);
-  background:rgba(255,255,255,.96);
-  backdrop-filter:blur(15px);
-  border-top:1px solid #e8e8e8;
-  display:flex;
-  justify-content:space-around;
-  padding:9px 4px calc(9px + env(safe-area-inset-bottom));
-  z-index:100;
-}
-
-.bottomNav button{
+.field{
+  width:100%;
   border:0;
-  background:none;
-  color:#888;
-  font-size:11px;
-  min-width:55px;
-}
-
-.bottomNav button span{
-  display:block;
-  font-size:21px;
-  margin-bottom:3px;
-}
-
-.bottomNav button.active{
+  background:#fff;
+  padding:14px 15px;
+  border-radius:15px;
+  margin:5px 0;
   color:#222;
-  font-weight:bold;
+  box-shadow:0 2px 10px rgba(0,0,0,.035);
 }
 
-/* =========================
-   TASKS
-========================= */
-
-#tasks{
-  background:#f4f8ff;
-  min-height:100vh;
+textarea.field{
+  min-height:110px;
+  resize:vertical;
 }
 
-.taskAdd{
-  background:white;
-  padding:18px;
-  border-radius:20px;
-  margin-bottom:14px;
-}
-
-.taskItem{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  background:white;
-  padding:15px;
-  border-radius:16px;
-  margin:8px 0;
-  box-shadow:0 3px 12px rgba(0,0,0,.04);
-}
-
-.taskItem input{
-  width:22px;
-  height:22px;
-  margin:0;
-  accent-color:#315f9d;
-}
-
-.taskItem.done .taskText{
-  text-decoration:line-through;
-  color:#aaa;
-}
-
-.taskText{
-  flex:1;
+.primary{
+  width:100%;
+  border:0;
+  padding:14px 16px;
+  border-radius:15px;
+  color:white;
+  font-weight:800;
+  margin-top:8px;
 }
 
 .delete{
   border:0;
   background:none;
-  color:#aaa;
-  font-size:18px;
+  color:#999;
+  font-size:12px;
 }
 
-/* =========================
-   HABITS
-========================= */
+/* =====================================================
+   HOME — SUNRISE / FREEDOM
+===================================================== */
 
-#habits{
-  background:#f5f0e7;
-  min-height:100vh;
+#home{
+  background:
+    radial-gradient(circle at 90% 0%,#ffd9bd 0,transparent 29%),
+    radial-gradient(circle at 5% 25%,#d9f6ed 0,transparent 30%),
+    linear-gradient(180deg,#fffaf4 0%,#f8f5ed 100%);
 }
 
-.habitIntro{
-  background:#1e2924;
+.homeTop{
+  padding:35px 20px 20px;
+}
+
+.appIcon{
+  width:78px;
+  height:78px;
+  border-radius:24px;
+  object-fit:cover;
+  display:block;
+  box-shadow:0 12px 28px rgba(0,0,0,.14);
+  margin-bottom:18px;
+}
+
+.homeTitle{
+  font-size:43px;
+  font-weight:900;
+  letter-spacing:-2px;
+  margin:0;
+}
+
+.homeSubtitle{
+  color:#666;
+  margin-top:5px;
+}
+
+.homeHero{
+  margin-top:23px;
+  background:#181818;
   color:white;
-  border-radius:25px;
-  padding:23px;
-  margin-bottom:15px;
+  border-radius:30px;
+  padding:25px 21px;
+  box-shadow:0 18px 40px rgba(0,0,0,.14);
 }
 
-.habitIntro h2{
-  margin:0 0 8px;
+.homeDate{
+  color:#aaa;
+  font-size:13px;
+}
+
+.homeQuestion{
+  font-size:24px;
+  line-height:1.45;
+  font-weight:800;
+  margin:12px 0 20px;
+}
+
+.progressTrack{
+  height:9px;
+  background:#3b3b3b;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progressTrack div{
+  height:100%;
+  width:0;
+  background:#d9ff65;
+  border-radius:20px;
+  transition:.4s;
+}
+
+.progressText{
+  color:#aaa;
+  font-size:12px;
+  margin-top:9px;
+}
+
+.homeGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:11px;
+  margin-top:13px;
+}
+
+.homeCard{
+  padding:18px;
+  border-radius:23px;
+  min-height:125px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.homeCard:nth-child(1){background:#dff0ff}
+.homeCard:nth-child(2){background:#e2f5e8}
+.homeCard:nth-child(3){background:#fff0c8}
+.homeCard:nth-child(4){background:#ffe1df}
+
+.homeCard .emoji{
   font-size:25px;
 }
 
-.habitIntro p{
-  color:#c9d4cd;
-  line-height:1.7;
-  margin:0;
+.homeCard strong{
+  font-size:29px;
 }
 
-.habitAdd{
-  background:#fffdf8;
-  padding:16px;
-  border-radius:20px;
-  margin-bottom:15px;
+.homeQuote{
+  margin-top:14px;
+  background:#fff;
+  border-radius:24px;
+  padding:21px;
+  line-height:1.9;
+  box-shadow:0 5px 20px rgba(0,0,0,.045);
 }
 
-.habitAddRow{
-  display:grid;
-  grid-template-columns:1fr 100px;
-  gap:7px;
+.homeQuote strong{
+  display:block;
+  margin-bottom:5px;
 }
 
-.habitAdd button{
-  border:0;
-  border-radius:13px;
-  background:#283a31;
+/* =====================================================
+   TASKS — BLUE / ACTION
+===================================================== */
+
+#tasks{
+  background:#f1f7ff;
+}
+
+.tasksBanner{
+  background:linear-gradient(135deg,#153c68,#2d78b9);
   color:white;
-  font-weight:bold;
+  border-radius:29px;
+  padding:24px;
+  margin-bottom:14px;
+  box-shadow:0 14px 30px rgba(35,91,145,.18);
 }
 
-.tableWrap{
-  overflow-x:auto;
-  background:#fffdf8;
-  border-radius:22px;
-  box-shadow:0 7px 25px rgba(60,50,30,.08);
-  direction:ltr;
-}
-
-.habitTable{
-  border-collapse:collapse;
-  min-width:720px;
-  width:100%;
-  direction:ltr;
-}
-
-.habitTable th{
-  background:#283a31;
-  color:white;
-  padding:10px 7px;
-  font-size:11px;
-  position:sticky;
-  top:0;
-}
-
-.habitTable th:first-child,
-.habitTable td:first-child{
-  position:sticky;
-  right:0;
-  z-index:2;
-}
-
-.habitTable th:first-child{
-  background:#283a31;
-}
-
-.habitTable td{
-  border-bottom:1px solid #e9e2d7;
-  border-left:1px solid #eee8de;
-  padding:8px 5px;
-  text-align:center;
-  height:54px;
-  background:#fffdf8;
-}
-
-.habitTable td:first-child{
-  min-width:230px;
-  text-align:right;
-  border-left:0;
-}
-
-.habitName{
-  display:flex;
-  align-items:center;
-  gap:7px;
-}
-
-.habitName input{
-  margin:0;
-  border:0;
-  background:transparent;
-  padding:7px;
-  font-weight:bold;
-  width:150px;
-}
-
-.timeInput{
-  width:78px !important;
-  margin:0 !important;
-  padding:7px !important;
-  border:1px solid #e4ded3 !important;
-  font-size:12px !important;
-}
-
-.dayCell{
-  width:55px;
-  min-width:55px;
-  height:48px;
-  cursor:pointer;
-  font-size:22px;
-  user-select:none;
-}
-
-.dayCell.emptyMark{
-  color:#ddd;
-}
-
-.dayCell.doneMark{
-  color:#2c7654;
-  background:#edf7ef;
-}
-
-.dayCell.failMark{
-  color:#c47b73;
-  background:#fff1ef;
-}
-
-.habitDelete{
-  border:0;
-  background:none;
-  color:#c99b91;
-  font-size:15px;
-}
-
-.habitFooter{
-  padding:15px;
-  background:#283a31;
-  color:white;
-  border-radius:0 0 22px 22px;
-  font-size:13px;
-  line-height:1.7;
-}
-
-.legend{
-  display:flex;
-  gap:15px;
-  margin:13px 2px;
-  font-size:12px;
-  color:#777;
-}
-
-/* =========================
-   APPOINTMENTS
-========================= */
-
-#appointments{
-  background:#eef8f7;
-  min-height:100vh;
-}
-
-.calendarHead{
-  background:#17665f;
-  color:white;
-  border-radius:27px;
-  padding:25px;
-  margin-bottom:15px;
-}
-
-.calendarHead h2{
+.tasksBanner h2{
   margin:0;
   font-size:27px;
 }
 
+.tasksBanner p{
+  margin:7px 0 0;
+  color:#d8eaff;
+  line-height:1.7;
+}
+
+.taskComposer{
+  background:white;
+  padding:16px;
+  border-radius:22px;
+  box-shadow:0 5px 18px rgba(25,70,110,.05);
+}
+
+.taskItem{
+  background:white;
+  margin:9px 0;
+  border-radius:18px;
+  padding:14px;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  box-shadow:0 3px 15px rgba(20,60,100,.045);
+}
+
+.taskCheck{
+  width:23px!important;
+  height:23px;
+  margin:0!important;
+  accent-color:#2375b7;
+}
+
+.taskText{
+  flex:1;
+  line-height:1.5;
+}
+
+.taskItem.done{
+  opacity:.55;
+}
+
+.taskItem.done .taskText{
+  text-decoration:line-through;
+}
+
+/* =====================================================
+   HABITS — DISCIPLINE TABLE
+===================================================== */
+
+#habits{
+  background:#eee8dc;
+}
+
+.habitHeader{
+  padding:27px 17px 13px;
+}
+
+.habitHeaderTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px;
+}
+
+.habitTitle{
+  font-size:31px;
+  font-weight:900;
+  letter-spacing:-1px;
+  color:#18251f;
+}
+
+.habitSubtitle{
+  color:#66736c;
+  line-height:1.7;
+  margin-top:5px;
+}
+
+.disciplineBadge{
+  background:#18251f;
+  color:#dfff9a;
+  padding:9px 12px;
+  border-radius:14px;
+  font-size:11px;
+  font-weight:bold;
+  white-space:nowrap;
+}
+
+.habitStatement{
+  margin:5px 17px 15px;
+  background:#18251f;
+  color:white;
+  border-radius:27px;
+  padding:23px;
+  box-shadow:0 14px 28px rgba(24,37,31,.18);
+}
+
+.habitStatement strong{
+  display:block;
+  color:#dfff9a;
+  font-size:21px;
+  margin-bottom:7px;
+}
+
+.habitStatement span{
+  color:#cbd5ce;
+  line-height:1.75;
+  font-size:13px;
+}
+
+.weekBar{
+  margin:0 17px 13px;
+  background:#d9d0c0;
+  border-radius:17px;
+  padding:9px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+
+.weekBar button{
+  border:0;
+  background:#fffaf0;
+  width:38px;
+  height:35px;
+  border-radius:11px;
+  font-size:18px;
+}
+
+.weekTitle{
+  font-size:12px;
+  font-weight:bold;
+  color:#354139;
+  text-align:center;
+  flex:1;
+}
+
+.tableOuter{
+  margin:0 10px;
+  overflow-x:auto;
+  overflow-y:visible;
+  border-radius:22px;
+  box-shadow:0 10px 30px rgba(70,57,38,.13);
+  background:#fffdf8;
+  -webkit-overflow-scrolling:touch;
+}
+
+.habitTable{
+  border-collapse:separate;
+  border-spacing:0;
+  min-width:900px;
+  width:100%;
+  direction:rtl;
+}
+
+.habitTable th{
+  height:57px;
+  background:#26362e;
+  color:white;
+  font-size:11px;
+  padding:5px;
+  border-left:1px solid #405148;
+  white-space:nowrap;
+  position:sticky;
+  top:0;
+  z-index:4;
+}
+
+.habitTable th.timeHead{
+  min-width:88px;
+  width:88px;
+  right:0;
+  position:sticky;
+  z-index:7;
+}
+
+.habitTable th.habitHead{
+  min-width:205px;
+  width:205px;
+  right:88px;
+  position:sticky;
+  z-index:7;
+}
+
+.habitTable th.dateHead{
+  min-width:77px;
+  width:77px;
+}
+
+.dayName{
+  display:block;
+  color:#b9c8bf;
+  font-size:9px;
+  margin-bottom:3px;
+}
+
+.dateNumber{
+  font-weight:900;
+}
+
+.habitTable td{
+  height:67px;
+  border-bottom:1px solid #ebe4d9;
+  border-left:1px solid #eee8df;
+  text-align:center;
+  background:#fffdf8;
+  padding:6px;
+}
+
+.habitTable td.timeCell{
+  min-width:88px;
+  width:88px;
+  right:0;
+  position:sticky;
+  z-index:3;
+  background:#fffdf8;
+}
+
+.habitTable td.nameCell{
+  min-width:205px;
+  width:205px;
+  right:88px;
+  position:sticky;
+  z-index:3;
+  background:#fffdf8;
+  text-align:right;
+}
+
+.habitTable tbody tr:nth-child(even) td{
+  background:#fbf8f0;
+}
+
+.habitTable tbody tr:nth-child(even) td.timeCell,
+.habitTable tbody tr:nth-child(even) td.nameCell{
+  background:#fbf8f0;
+}
+
+.habitTime{
+  width:75px!important;
+  padding:8px 4px!important;
+  margin:0!important;
+  border:1px solid #ded7cb!important;
+  border-radius:10px!important;
+  background:white!important;
+  font-size:12px!important;
+  text-align:center;
+}
+
+.habitNameInput{
+  width:100%!important;
+  padding:8px 7px!important;
+  margin:0!important;
+  border:1px solid transparent!important;
+  background:transparent!important;
+  font-weight:800!important;
+  font-size:13px!important;
+  text-align:right!important;
+}
+
+.habitNameInput:focus{
+  background:white!important;
+  border-color:#b7c5bc!important;
+}
+
+.rowDelete{
+  border:0;
+  background:transparent;
+  color:#b8aaa0;
+  font-size:14px;
+  padding:3px;
+}
+
+.markCell{
+  min-width:77px;
+  width:77px;
+  font-size:24px;
+  font-weight:bold;
+  cursor:pointer;
+  user-select:none;
+  transition:.15s;
+}
+
+.markCell:active{
+  transform:scale(.91);
+}
+
+.markEmpty{
+  color:#d8d1c6;
+}
+
+.markDone{
+  color:#246d4c;
+  background:#e5f5e8!important;
+}
+
+.markMissed{
+  color:#b34d48;
+  background:#ffe8e4!important;
+}
+
+.habitBottom{
+  margin:0 10px;
+  background:#26362e;
+  color:#cbd5ce;
+  padding:17px;
+  border-radius:0 0 22px 22px;
+  line-height:1.7;
+  font-size:12px;
+}
+
+.habitActions{
+  padding:13px 17px;
+}
+
+.addRowBtn{
+  width:100%;
+  border:2px dashed #a99f90;
+  background:transparent;
+  color:#526057;
+  border-radius:15px;
+  padding:12px;
+  font-weight:bold;
+}
+
+/* =====================================================
+   APPOINTMENTS — TURQUOISE / CALENDAR
+===================================================== */
+
+#appointments{
+  background:#eaf8f5;
+}
+
+.calendarHero{
+  background:#11665d;
+  color:white;
+  border-radius:30px;
+  padding:25px;
+  margin-bottom:14px;
+}
+
+.calendarHero h2{
+  margin:0;
+  font-size:28px;
+}
+
+.calendarHero p{
+  color:#c8e5df;
+  line-height:1.7;
+  margin-bottom:0;
+}
+
 .appointmentForm{
   background:white;
-  padding:18px;
-  border-radius:20px;
+  border-radius:22px;
+  padding:16px;
 }
 
 .appointment{
   background:white;
+  border-radius:19px;
   margin:10px 0;
-  padding:16px;
-  border-right:5px solid #17665f;
-  border-radius:15px;
+  padding:17px;
+  border-right:5px solid #169687;
+  box-shadow:0 4px 14px rgba(20,100,90,.05);
 }
 
 .appointment.done{
-  opacity:.55;
+  opacity:.48;
 }
 
-/* =========================
-   GOALS
-========================= */
+.appointmentTitle{
+  font-weight:900;
+  font-size:16px;
+}
+
+.appointmentMeta{
+  color:#55706b;
+  font-size:12px;
+  margin-top:8px;
+}
+
+/* =====================================================
+   GOALS — GOLD / AMBITION
+===================================================== */
 
 #goals{
-  background:#fff7df;
-  min-height:100vh;
+  background:#fff5d9;
 }
 
 .goalHero{
-  background:#6b4a20;
+  background:
+    radial-gradient(circle at 85% 10%,#d59d43 0,transparent 25%),
+    #493219;
   color:white;
-  border-radius:27px;
-  padding:25px;
-  margin-bottom:15px;
+  border-radius:30px;
+  padding:26px;
+  margin-bottom:14px;
+}
+
+.goalHero .target{
+  font-size:38px;
+}
+
+.goalHero h2{
+  margin:6px 0;
+  font-size:28px;
 }
 
 .goalHero p{
-  color:#eadcc5;
+  color:#e6d5ba;
   line-height:1.7;
 }
 
-.goalForm{
-  background:#fffdf7;
-  border:1px solid #eee0c1;
-  padding:18px;
-  border-radius:20px;
+.goalComposer{
+  background:#fffdf6;
+  border:1px solid #eadcb9;
+  border-radius:22px;
+  padding:16px;
 }
 
-.goal{
-  background:#fffdf7;
-  border:1px solid #eadfc8;
-  border-radius:20px;
+.goalCard{
+  background:#fffdf8;
+  border:1px solid #eadfc5;
+  border-radius:22px;
+  margin:12px 0;
   padding:17px;
+}
+
+.goalName{
+  font-size:19px;
+  font-weight:900;
+}
+
+.goalBar{
+  height:8px;
+  background:#eadfca;
+  border-radius:20px;
+  overflow:hidden;
   margin:12px 0;
 }
 
-.goalTitle{
-  font-size:19px;
-  font-weight:bold;
+.goalBar div{
+  height:100%;
+  background:#b87920;
+  border-radius:20px;
 }
 
 .goalStep{
@@ -552,182 +732,297 @@ textarea{
   align-items:center;
   gap:8px;
   padding:9px 0;
-  border-bottom:1px solid #f0eadf;
+  border-bottom:1px solid #f0e9da;
+  font-size:13px;
 }
 
 .goalStep input{
   width:20px;
+  height:20px;
   margin:0;
-  accent-color:#a76b23;
+  accent-color:#b87920;
 }
 
 .goalStep.done span{
-  text-decoration:line-through;
   color:#aaa;
+  text-decoration:line-through;
 }
 
-/* =========================
-   PROBLEMS
-========================= */
+/* =====================================================
+   PROBLEMS — RED / CLARITY
+===================================================== */
 
 #problems{
-  background:#edf0f4;
-  min-height:100vh;
+  background:#f6eeee;
 }
 
 .problemHero{
-  background:#29343f;
+  background:#4b2929;
   color:white;
-  border-radius:27px;
-  padding:25px;
-  margin-bottom:15px;
+  border-radius:30px;
+  padding:26px;
+  margin-bottom:14px;
+}
+
+.problemHero .icon{
+  font-size:38px;
+}
+
+.problemHero h2{
+  font-size:27px;
+  margin:6px 0;
 }
 
 .problemHero p{
-  color:#c8d0d7;
+  color:#e5caca;
   line-height:1.7;
 }
 
-.problemForm{
-  background:white;
-  padding:18px;
-  border-radius:20px;
+.problemComposer{
+  background:#fff;
+  border-radius:22px;
+  padding:16px;
 }
 
-.problem{
-  background:white;
-  border-radius:20px;
-  padding:18px;
+.problemCard{
+  background:#fff;
+  border-radius:21px;
+  padding:17px;
   margin:12px 0;
-  border-top:4px solid #647384;
+  border-top:5px solid #a95555;
+  box-shadow:0 5px 18px rgba(100,50,50,.05);
 }
 
-.problem h3{
-  margin-top:0;
+.problemCard h3{
+  margin:0 0 12px;
 }
 
 .problemBlock{
-  background:#f5f6f7;
-  padding:12px;
+  background:#f8f2f2;
   border-radius:13px;
+  padding:12px;
   margin-top:8px;
-  line-height:1.7;
-  font-size:14px;
+  line-height:1.75;
+  font-size:13px;
 }
 
-/* =========================
-   DREAMS
-========================= */
+.problemBlock strong{
+  display:block;
+  color:#783e3e;
+  margin-bottom:3px;
+}
+
+/* =====================================================
+   DREAMS — NIGHT / VISION
+===================================================== */
 
 #dreams{
   background:
-    radial-gradient(circle at 20% 15%,#d7f0ff 0,transparent 25%),
-    radial-gradient(circle at 90% 65%,#eadbff 0,transparent 30%),
-    #f6f3ff;
-  min-height:100vh;
+    radial-gradient(circle at 15% 15%,#7c65b8 0,transparent 18%),
+    radial-gradient(circle at 90% 70%,#405b9b 0,transparent 22%),
+    linear-gradient(145deg,#10172f,#1b2244 50%,#30204a);
+  color:white;
 }
 
-.dreamHero{
-  padding:20px 5px;
+.dreamPage{
+  padding:30px 17px;
 }
 
-.dreamHero .moon{
-  font-size:48px;
+.dreamStars{
+  font-size:35px;
+  letter-spacing:7px;
 }
 
-.dreamHero h2{
-  font-size:31px;
-  margin:8px 0;
+.dreamPage h1{
+  font-size:39px;
+  margin:13px 0 5px;
 }
 
-.dreamBox{
-  background:rgba(255,255,255,.8);
-  backdrop-filter:blur(10px);
-  border:1px solid white;
-  border-radius:27px;
-  padding:20px;
+.dreamPage .intro{
+  color:#cbd0e8;
+  line-height:1.8;
 }
 
-.dreamBox textarea{
-  min-height:230px;
-  background:rgba(255,255,255,.8);
+.dreamVision{
+  margin-top:22px;
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(15px);
+  border-radius:29px;
+  padding:18px;
 }
 
-/* =========================
-   FREEDOM
-========================= */
+.dreamVision textarea{
+  min-height:280px;
+  background:rgba(255,255,255,.92);
+  border:0;
+  color:#202035;
+}
+
+.dreamSaved{
+  color:#d9ffab;
+  text-align:center;
+  font-size:12px;
+  margin-top:10px;
+}
+
+.dreamButton{
+  background:#c1a5ff;
+  color:#241a38;
+}
+
+/* =====================================================
+   FREEDOM — GREEN / AIR
+===================================================== */
 
 #freedom{
-  background:#f4fbf5;
-  min-height:100vh;
+  background:#eef8f0;
 }
 
-.freedomHero{
-  text-align:center;
-  padding:30px 15px;
+.freedomPage{
+  padding:30px 17px;
 }
 
-.freedomHero .bird{
+.freedomBird{
   font-size:60px;
 }
 
-.freedomHero h2{
-  font-size:30px;
-  margin:8px 0;
+.freedomPage h1{
+  font-size:37px;
+  margin:7px 0;
+}
+
+.freedomPage .intro{
+  color:#607265;
+  line-height:1.8;
 }
 
 .freedomCircle{
+  width:235px;
+  height:235px;
+  margin:24px auto;
+  border-radius:50%;
   background:#173d2b;
   color:white;
-  width:220px;
-  height:220px;
-  border-radius:50%;
-  margin:20px auto;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:30px;
-  line-height:1.7;
-  box-shadow:0 15px 35px rgba(23,61,43,.18);
+  padding:35px;
+  line-height:1.8;
+  box-shadow:0 20px 45px rgba(23,61,43,.18);
 }
 
-.freedomPrinciple{
+.principle{
   background:white;
-  padding:18px;
   border-radius:20px;
+  padding:17px;
   margin:10px 0;
-  border-right:4px solid #4d966c;
+  box-shadow:0 4px 15px rgba(30,80,45,.045);
 }
 
-.freedomPrinciple strong{
+.principle strong{
   display:block;
   margin-bottom:5px;
+  color:#285c40;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* =====================================================
+   BOTTOM NAV
+===================================================== */
 
-@media(max-width:400px){
+.bottomNav{
+  position:fixed;
+  z-index:100;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(680px,100%);
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(20px);
+  border-top:1px solid rgba(0,0,0,.08);
+  display:flex;
+  overflow-x:auto;
+  padding:8px 3px calc(8px + env(safe-area-inset-bottom));
+}
 
-  .pageTitle{
-    font-size:25px;
+.bottomNav button{
+  flex:0 0 78px;
+  border:0;
+  background:none;
+  color:#999;
+  padding:3px 2px;
+  font-size:10px;
+  font-weight:600;
+}
+
+.bottomNav button span{
+  display:block;
+  font-size:20px;
+  margin-bottom:3px;
+}
+
+.bottomNav button.active{
+  color:#171717;
+  font-weight:900;
+}
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty{
+  text-align:center;
+  padding:40px 15px;
+  color:#888;
+  line-height:1.8;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:420px){
+
+  .homeTitle{
+    font-size:38px;
   }
 
-  .homeHero h1{
-    font-size:34px;
+  .habitTitle{
+    font-size:28px;
   }
 
-  .habitAddRow{
-    grid-template-columns:1fr 85px;
+  .disciplineBadge{
+    font-size:9px;
+    padding:8px;
   }
 
   .habitTable{
-    min-width:690px;
+    min-width:850px;
+  }
+
+  .habitTable th.habitHead,
+  .habitTable td.nameCell{
+    min-width:185px;
+    width:185px;
+  }
+
+  .habitTable th.timeHead,
+  .habitTable td.timeCell{
+    min-width:82px;
+    width:82px;
+  }
+
+  .habitTable th.dateHead,
+  .habitTable td.markCell{
+    min-width:72px;
+    width:72px;
+  }
+
+  .bottomNav button{
+    flex-basis:72px;
   }
 }
-
 </style>
 </head>
 
@@ -735,70 +1030,77 @@ textarea{
 
 <div class="app">
 
-
-<!-- =========================
-HOME
-========================= -->
+<!-- =====================================================
+ HOME
+===================================================== -->
 
 <section id="home" class="section active">
 
-  <div class="homeHero">
+  <div class="homeTop">
 
-    <div class="symbol">🕊️</div>
+    <img
+      class="appIcon"
+      src="A632EA99-79D1-4A97-83E8-B8BBD092EFC0.png"
+      alt="أيقونة حياتي">
 
-    <h1>حياتي</h1>
+    <h1 class="homeTitle">حياتي</h1>
 
-    <p>
-      الحرية التي أبنيها بانضباطي.
-    </p>
+    <div class="homeSubtitle">
+      حياة أريدها، وأنا التي أبنيها. 🕊️
+    </div>
 
-    <div class="todayBox">
+    <div class="homeHero">
 
-      <div class="date" id="todayDate"></div>
+      <div class="homeDate" id="todayDate"></div>
 
-      <div class="focus">
-        ماذا سأفعل اليوم لأقترب من الحياة التي أريدها؟
+      <div class="homeQuestion">
+        ماذا سأفعل اليوم<br>
+        لأقترب من الحياة التي أريدها؟
       </div>
 
-      <div class="homeProgress">
+      <div class="progressTrack">
         <div id="homeProgress"></div>
       </div>
 
-      <div style="margin-top:10px;font-size:13px;color:#bbb">
-        إنجاز اليوم:
-        <strong id="homePercent">0%</strong>
+      <div class="progressText">
+        إنجاز اليوم: <strong id="homePercent">0%</strong>
       </div>
 
     </div>
 
-    <div class="homeStats">
+    <div class="homeGrid">
 
-      <div class="stat">
-        📝 المهام
+      <div class="homeCard">
+        <span class="emoji">⚡</span>
+        <span>المهام</span>
         <strong id="statTasks">0</strong>
       </div>
 
-      <div class="stat">
-        🌱 العادات
-        <strong id="statHabits">0</strong>
+      <div class="homeCard">
+        <span class="emoji">🌱</span>
+        <span>العادات</span>
+        <strong id="statHabits">15</strong>
       </div>
 
-      <div class="stat">
-        🎯 الأهداف
+      <div class="homeCard">
+        <span class="emoji">🎯</span>
+        <span>الأهداف</span>
         <strong id="statGoals">0</strong>
       </div>
 
-      <div class="stat">
-        📅 المواعيد
+      <div class="homeCard">
+        <span class="emoji">📅</span>
+        <span>المواعيد</span>
         <strong id="statAppointments">0</strong>
       </div>
 
     </div>
 
     <div class="homeQuote">
-      لا أبحث عن حياة بلا مسؤوليات.
-      <br>
-      أبني نفسي حتى أستطيع أن أعيش بحرية. 🕊️
+      <strong>🕊️ الحرية التي أريدها</strong>
+      ليست أن أترك كل شيء.
+      هي أن أصبح قادرة على قيادة نفسي،
+      وأصنع لنفسي حياة أحب أن أعيشها.
     </div>
 
   </div>
@@ -806,392 +1108,479 @@ HOME
 </section>
 
 
-<!-- =========================
-TASKS
-========================= -->
+<!-- =====================================================
+ TASKS
+===================================================== -->
 
 <section id="tasks" class="section">
 
-  <div class="top">
+  <div class="page">
 
-    <div class="backTitle">
-      <div>
-        <div class="pageTitle">⚡ مهامي</div>
-        <div class="pageSub">
-          الأشياء التي يجب أن تحدث اليوم.
-        </div>
-      </div>
+    <div class="pageHeader" style="padding:10px 2px 18px">
+
+      <h1>⚡ مهامي</h1>
+
+      <p>
+        أشياء صغيرة تنتهي اليوم، حتى يبقى رأسي خفيفاً.
+      </p>
+
     </div>
 
-  </div>
+    <div class="tasksBanner">
 
-  <div class="taskAdd">
+      <h2>اعمليها. ثم اتركيها وراءك. ✨</h2>
 
-    <input id="taskInput"
-      placeholder="اكتبي المهمة التي تريدين إنجازها...">
+      <p>
+        لا نحتاج قائمة مثالية؛ نحتاج خطوات حقيقية.
+      </p>
 
-    <button class="primary"
-      style="background:#315f9d"
-      onclick="addTask()">
-      ＋ إضافة مهمة
-    </button>
-
-  </div>
-
-  <div id="taskList"></div>
-
-</section>
-
-
-<!-- =========================
-HABITS
-========================= -->
-
-<section id="habits" class="section">
-
-  <div class="top">
-
-    <div class="pageTitle">
-      🌱 مختبر الانضباط
     </div>
 
-    <div class="pageSub">
-      العادة الصغيرة التي تكررينها تصبح جزءاً من حياتك.
-    </div>
+    <div class="taskComposer">
 
-  </div>
+      <input
+        id="taskInput"
+        class="field"
+        placeholder="اكتبي مهمة جديدة...">
 
-  <div class="habitIntro">
-
-    <h2>15 عادة · يوم وراء يوم</h2>
-
-    <p>
-      لا نريد الكمال.
-      نريد أن نرى الحقيقة:
-      هل فعلتِ الشيء أم لا؟
-      اضغطي على خانة اليوم لتسجيل النتيجة.
-    </p>
-
-  </div>
-
-  <div class="habitAdd">
-
-    <div style="font-weight:bold;margin-bottom:8px">
-      أضيفي عادة جديدة
-    </div>
-
-    <div class="habitAddRow">
-
-      <input id="habitInput"
-        placeholder="مثلاً: الاستيقاظ مبكراً">
-
-      <button onclick="addHabit()">
-        ＋ إضافة
+      <button
+        class="primary"
+        style="background:#236da7"
+        onclick="addTask()">
+        ＋ إضافة المهمة
       </button>
 
     </div>
 
+    <div id="taskList"></div>
+
   </div>
 
-  <div class="legend">
-    <span>⚪ لم أسجل</span>
-    <span>✅ أنجزت</span>
-    <span>✕ لم أنجز</span>
+</section>
+
+
+<!-- =====================================================
+ HABITS
+===================================================== -->
+
+<section id="habits" class="section">
+
+  <div class="habitHeader">
+
+    <div class="habitHeaderTop">
+
+      <div>
+
+        <div class="habitTitle">
+          🌱 جدول الانضباط
+        </div>
+
+        <div class="habitSubtitle">
+          من الصباح إلى الليل، كل عادة في مكانها.
+        </div>
+
+      </div>
+
+      <div class="disciplineBadge">
+        DISCIPLINE<br>
+        → FREEDOM
+      </div>
+
+    </div>
+
   </div>
 
-  <div class="tableWrap">
+  <div class="habitStatement">
+
+    <strong>أنا لا أحتاج أن أكون مثالية.</strong>
+
+    <span>
+      أحتاج فقط أن أرى يومي بوضوح، وأسجل الحقيقة،
+      وأعود للطريق في اليوم التالي.
+    </span>
+
+  </div>
+
+  <div class="weekBar">
+
+    <button onclick="changeHabitWeek(-1)">‹</button>
+
+    <div class="weekTitle" id="habitWeekTitle">
+      هذا الأسبوع
+    </div>
+
+    <button onclick="changeHabitWeek(1)">›</button>
+
+  </div>
+
+  <div class="tableOuter">
 
     <table class="habitTable">
 
       <thead>
-        <tr id="habitHeader"></tr>
+
+        <tr id="habitHeaderRow">
+
+        </tr>
+
       </thead>
 
-      <tbody id="habitTableBody"></tbody>
+      <tbody id="habitTableBody">
+
+      </tbody>
 
     </table>
 
-    <div class="habitFooter">
-      💡 الانضباط ليس أن تكوني مثالية.
-      الانضباط أن تعودي إلى الطريق كلما ابتعدتِ عنه.
+    <div class="habitBottom">
+      اضغطي على كل تاريخ لتسجيل اليوم:
+      <b style="color:#dfff9a">✓</b> أنجزتِ،
+      <b style="color:#ffaaa5">×</b> لم تنجزي،
+      والنقطة تعني أنك لم تسجلي شيئاً بعد.
     </div>
+
+  </div>
+
+  <div class="habitActions">
+
+    <button
+      class="addRowBtn"
+      onclick="addHabitRow()">
+      ＋ إضافة سطر عادة جديد
+    </button>
 
   </div>
 
 </section>
 
 
-<!-- =========================
-APPOINTMENTS
-========================= -->
+<!-- =====================================================
+ APPOINTMENTS
+===================================================== -->
 
 <section id="appointments" class="section">
 
-  <div class="top">
+  <div class="page">
 
-    <div class="pageTitle">📅 مواعيدي</div>
+    <div class="pageHeader" style="padding:10px 2px 18px">
 
-    <div class="pageSub">
-      الأشياء التي لها وقت وتاريخ محدد.
+      <h1>📅 مواعيدي</h1>
+
+      <p>
+        كل شيء له تاريخ أو ساعة، له مكان هنا.
+      </p>
+
     </div>
 
+    <div class="calendarHero">
+
+      <h2>حياتي لها موعد. 🗓️</h2>
+
+      <p>
+        امتحان، عمل، سفر، موعد، تسجيل، اتصال...
+        اكتبيه ولا تحمليه في رأسك.
+      </p>
+
+    </div>
+
+    <div class="appointmentForm">
+
+      <input
+        id="appointmentInput"
+        class="field"
+        placeholder="ما الموعد؟">
+
+      <input
+        id="appointmentDate"
+        class="field"
+        type="date">
+
+      <input
+        id="appointmentTime"
+        class="field"
+        type="time">
+
+      <button
+        class="primary"
+        style="background:#11756b"
+        onclick="addAppointment()">
+        ＋ إضافة الموعد
+      </button>
+
+    </div>
+
+    <div id="appointmentList"></div>
+
   </div>
-
-  <div class="calendarHead">
-
-    <h2>أبقي حياتك في موعدها.</h2>
-
-    <p>
-      موعد، تسجيل، امتحان، عمل، سفر، اتصال...
-      اكتبيه حتى لا يبقى في رأسك.
-    </p>
-
-  </div>
-
-  <div class="appointmentForm">
-
-    <input id="appointmentInput"
-      placeholder="ما الذي لديك؟">
-
-    <input id="appointmentDate" type="date">
-
-    <input id="appointmentTime" type="time">
-
-    <button class="primary"
-      style="background:#17665f"
-      onclick="addAppointment()">
-      ＋ إضافة إلى المواعيد
-    </button>
-
-  </div>
-
-  <div id="appointmentList"></div>
 
 </section>
 
 
-<!-- =========================
-GOALS
-========================= -->
+<!-- =====================================================
+ GOALS
+===================================================== -->
 
 <section id="goals" class="section">
 
-  <div class="top">
+  <div class="page">
 
-    <div class="pageTitle">🎯 أهدافي</div>
+    <div class="pageHeader" style="padding:10px 2px 18px">
 
-    <div class="pageSub">
-      الحلم يصبح هدفاً عندما نعطيه خطوات.
+      <h1>🎯 أهدافي</h1>
+
+      <p>
+        الحلم يصبح هدفاً عندما أعطيه طريقاً.
+      </p>
+
     </div>
 
+    <div class="goalHero">
+
+      <div class="target">🎯</div>
+
+      <h2>ارفعي عينيك أبعد.</h2>
+
+      <p>
+        اكتبي الشيء الذي تريدينه،
+        ثم حوّليه إلى خطوات تستطيعين فعلها.
+      </p>
+
+    </div>
+
+    <div class="goalComposer">
+
+      <input
+        id="goalTitle"
+        class="field"
+        placeholder="ما الهدف الذي تريدينه؟">
+
+      <textarea
+        id="goalSteps"
+        class="field"
+        placeholder="اكتبي كل خطوة في سطر مستقل..."></textarea>
+
+      <button
+        class="primary"
+        style="background:#a66b20"
+        onclick="addGoal()">
+        ＋ إنشاء الهدف
+      </button>
+
+    </div>
+
+    <div id="goalList"></div>
+
   </div>
-
-  <div class="goalHero">
-
-    <h2>من أين أريد أن أصل؟</h2>
-
-    <p>
-      لا تكتبي فقط "أريد أن أنجح".
-      اكتبي ماذا تريدين، ثم قسمي الطريق.
-    </p>
-
-  </div>
-
-  <div class="goalForm">
-
-    <input id="goalTitle"
-      placeholder="اسم الهدف">
-
-    <textarea id="goalSteps"
-      placeholder="اكتبي خطوات الهدف، كل خطوة في سطر مستقل..."></textarea>
-
-    <button class="primary"
-      style="background:#9a6426"
-      onclick="addGoal()">
-      ＋ بناء الهدف
-    </button>
-
-  </div>
-
-  <div id="goalList"></div>
 
 </section>
 
 
-<!-- =========================
-PROBLEMS
-========================= -->
+<!-- =====================================================
+ PROBLEMS
+===================================================== -->
 
 <section id="problems" class="section">
 
-  <div class="top">
+  <div class="page">
 
-    <div class="pageTitle">🧩 غرفة الحلول</div>
+    <div class="pageHeader" style="padding:10px 2px 18px">
 
-    <div class="pageSub">
-      لا نترك المشكلة تدور في الرأس.
-      نكتبها، نفهمها، ونضع لها خطوة.
+      <h1>🧩 غرفة الحلول</h1>
+
+      <p>
+        المشكلة هنا لا تبقى مجرد شعور؛
+        نحولها إلى فهم وخطة.
+      </p>
+
     </div>
 
+    <div class="problemHero">
+
+      <div class="icon">🧩</div>
+
+      <h2>اكتبي المشكلة أمامك.</h2>
+
+      <p>
+        ما الذي يحدث؟ لماذا؟ ما الحل؟
+        وما أول خطوة تستطيعين القيام بها؟
+      </p>
+
+    </div>
+
+    <div class="problemComposer">
+
+      <input
+        id="problemTitle"
+        class="field"
+        placeholder="ما المشكلة؟">
+
+      <textarea
+        id="problemCause"
+        class="field"
+        placeholder="ما السبب أو ما الذي يجعلها مستمرة؟"></textarea>
+
+      <textarea
+        id="problemSolution"
+        class="field"
+        placeholder="ما الحل الذي أراه مناسباً؟"></textarea>
+
+      <textarea
+        id="problemSteps"
+        class="field"
+        placeholder="اكتبي خطة الحل خطوة بخطوة..."></textarea>
+
+      <button
+        class="primary"
+        style="background:#8d4949"
+        onclick="addProblem()">
+        🧩 حفظ خطة الحل
+      </button>
+
+    </div>
+
+    <div id="problemList"></div>
+
   </div>
-
-  <div class="problemHero">
-
-    <h2>المشكلة ليست خطة.</h2>
-
-    <p>
-      هنا نحول الشيء الذي يزعجك إلى شيء يمكن العمل عليه.
-    </p>
-
-  </div>
-
-  <div class="problemForm">
-
-    <input id="problemTitle"
-      placeholder="ما المشكلة؟">
-
-    <textarea id="problemCause"
-      placeholder="ما الذي يجعلها مستمرة؟"></textarea>
-
-    <textarea id="problemSolution"
-      placeholder="ما الحل الذي أستطيع القيام به؟"></textarea>
-
-    <textarea id="problemSteps"
-      placeholder="ما أول خطوة؟ وما الخطوات التي بعدها؟"></textarea>
-
-    <button class="primary"
-      style="background:#536578"
-      onclick="addProblem()">
-      🧩 حفظ خطة الحل
-    </button>
-
-  </div>
-
-  <div id="problemList"></div>
 
 </section>
 
 
-<!-- =========================
-DREAMS
-========================= -->
+<!-- =====================================================
+ DREAMS
+===================================================== -->
 
 <section id="dreams" class="section">
 
-  <div class="top dreamHero">
+  <div class="dreamPage">
 
-    <div class="moon">🌙</div>
+    <div class="dreamStars">✦　☾　✦</div>
 
-    <h2>أحلامي</h2>
+    <h1>أحلامي</h1>
 
-    <div class="pageSub">
-      المكان الذي لا أضع فيه حدوداً لما أريد أن أعيشه.
+    <div class="intro">
+      هنا لا توجد قائمة واجبات.
+      هنا أكتب الحياة التي أريد أن أعيشها.
     </div>
 
-  </div>
+    <div class="dreamVision">
 
-  <div class="dreamBox">
+      <textarea
+        id="dreamInput"
+        class="field"
+        placeholder="اكتبي رؤيتك...
 
-    <textarea id="dreamInput"
-      placeholder="اكتبي حياتك التي تتمنينها...
 أين تريدين أن تعيشي؟
-ماذا تريدين أن تتعلمي؟
+كيف تريدين أن يكون بيتك؟
 أين تريدين السفر؟
+ماذا تريدين أن تتعلمي؟
 كيف تريدين أن يكون يومك؟
-من تريدين أن تصبحي؟"></textarea>
+من تريدين أن تصبحي؟
+ما الأشياء التي تريدين أن تجربيها؟"></textarea>
 
-    <button class="primary"
-      style="background:#6e57a1"
-      onclick="saveDream()">
-      ✨ حفظ رؤيتي
-    </button>
+      <button
+        class="primary dreamButton"
+        onclick="saveDream()">
+        ✨ حفظ رؤيتي
+      </button>
 
-    <p id="dreamSaved" class="small"></p>
+      <div id="dreamSaved" class="dreamSaved"></div>
+
+    </div>
 
   </div>
 
 </section>
 
 
-<!-- =========================
-FREEDOM
-========================= -->
+<!-- =====================================================
+ FREEDOM
+===================================================== -->
 
 <section id="freedom" class="section">
 
-  <div class="freedomHero">
+  <div class="freedomPage">
 
-    <div class="bird">🕊️</div>
+    <div class="freedomBird">🕊️</div>
 
-    <h2>الحرية</h2>
+    <h1>الحرية</h1>
 
-    <p class="pageSub">
-      ليست الهروب من المسؤولية.
-      هي القدرة على قيادة نفسك.
-    </p>
-
-    <div class="freedomCircle">
-      أنا أنظم حياتي<br>
-      حتى لا تصبح حياتي هي التي تتحكم بي.
+    <div class="intro">
+      ليست الحرية أن أترك حياتي تفعل بي ما تشاء.
+      الحرية أن أكون أنا من يقودها.
     </div>
 
-  </div>
+    <div class="freedomCircle">
+      الانضباط الذي أختاره اليوم
+      يعطيني مساحة أكبر
+      للحياة التي أريدها غداً.
+    </div>
 
-  <div class="freedomPrinciple">
-    <strong>⏰ الانضباط</strong>
-    أفعل ما يجب فعله حتى عندما لا أشعر بالرغبة.
-  </div>
+    <div class="principle">
+      <strong>⏰ الانضباط</strong>
+      أفعل ما اخترت فعله، حتى عندما لا تكون لدي رغبة.
+    </div>
 
-  <div class="freedomPrinciple">
-    <strong>🌱 المسؤولية</strong>
-    ما أستطيع تغييره يبدأ مني.
-  </div>
+    <div class="principle">
+      <strong>🌱 المسؤولية</strong>
+      أبدأ من الأشياء التي أستطيع تغييرها.
+    </div>
 
-  <div class="freedomPrinciple">
-    <strong>🕊️ الحرية</strong>
-    كل عادة صحيحة تعطيني مساحة أكبر لأعيش الحياة التي أريدها.
-  </div>
+    <div class="principle">
+      <strong>🧳 الحياة</strong>
+      أريد وقتاً للسفر، للاكتشاف، للموسيقى، للراحة وللأشياء التي أحبها.
+    </div>
 
-  <div class="freedomPrinciple">
-    <strong>🌸 الراحة</strong>
-    الراحة الحقيقية تأتي عندما أعرف أنني أستطيع الاعتماد على نفسي.
+    <div class="principle">
+      <strong>🕊️ الحرية</strong>
+      كل شيء أنظمه اليوم يترك لي مساحة أكبر لأعيش غداً.
+    </div>
+
   </div>
 
 </section>
 
 
-<!-- =========================
-BOTTOM NAV
-========================= -->
+<!-- =====================================================
+ NAVIGATION
+===================================================== -->
 
 <nav class="bottomNav">
 
-  <button class="active"
-    onclick="showSection('home',this)">
+  <button class="active" onclick="showSection('home',this)">
     <span>⌂</span>
     الرئيسية
   </button>
 
-  <button
-    onclick="showSection('tasks',this)">
-    <span>✓</span>
+  <button onclick="showSection('tasks',this)">
+    <span>⚡</span>
     المهام
   </button>
 
-  <button
-    onclick="showSection('habits',this)">
+  <button onclick="showSection('habits',this)">
     <span>🌱</span>
-    الانضباط
+    العادات
   </button>
 
-  <button
-    onclick="showSection('goals',this)">
+  <button onclick="showSection('appointments',this)">
+    <span>📅</span>
+    المواعيد
+  </button>
+
+  <button onclick="showSection('goals',this)">
     <span>🎯</span>
     الأهداف
   </button>
 
-  <button
-    onclick="showSection('freedom',this)">
+  <button onclick="showSection('problems',this)">
+    <span>🧩</span>
+    المشاكل
+  </button>
+
+  <button onclick="showSection('dreams',this)">
+    <span>🌙</span>
+    الأحلام
+  </button>
+
+  <button onclick="showSection('freedom',this)">
     <span>🕊️</span>
     الحرية
   </button>
@@ -1203,9 +1592,9 @@ BOTTOM NAV
 
 <script>
 
-/* =========================
-   DATA
-========================= */
+/* =====================================================
+ DATA
+===================================================== */
 
 let tasks =
 JSON.parse(localStorage.getItem("myLifeTasks") || "[]");
@@ -1222,121 +1611,126 @@ JSON.parse(localStorage.getItem("myLifeGoals") || "[]");
 let problems =
 JSON.parse(localStorage.getItem("myLifeProblems") || "[]");
 
+let habitWeekOffset = 0;
 
-/* =========================
-   NAVIGATION
-========================= */
+
+/* =====================================================
+ HABIT MIGRATION
+===================================================== */
+
+function prepareHabits(){
+
+  habits = habits.map(h => ({
+    id:h.id || Date.now()+Math.random(),
+    name:h.name || "",
+    time:h.time || "",
+    days:h.days || {}
+  }));
+
+  /* 
+     إذا كانت عندك عادات قديمة،
+     نخليها ونكمل الجدول حتى 15 سطر.
+  */
+
+  while(habits.length < 15){
+
+    habits.push({
+      id:Date.now()+Math.random(),
+      name:"",
+      time:"",
+      days:{}
+    });
+
+  }
+
+  saveHabitsOnly();
+
+}
+
+
+/* =====================================================
+ NAVIGATION
+===================================================== */
 
 function showSection(id,button){
 
   document.querySelectorAll(".section")
-  .forEach(s=>s.classList.remove("active"));
+    .forEach(s=>s.classList.remove("active"));
 
-  document.getElementById(id).classList.add("active");
+  const section=document.getElementById(id);
 
-  document.querySelectorAll(".bottomNav button")
-  .forEach(b=>b.classList.remove("active"));
-
-  if(button) button.classList.add("active");
-
-  window.scrollTo(0,0);
-
-  renderAll();
-
-}
-
-
-/* =========================
-   DATE
-========================= */
-
-function getDates(){
-
-  let dates=[];
-
-  for(let i=0;i<7;i++){
-
-    let d=new Date();
-
-    d.setDate(d.getDate()+i);
-
-    dates.push(d);
-
+  if(section){
+    section.classList.add("active");
   }
 
-  return dates;
+  document.querySelectorAll(".bottomNav button")
+    .forEach(b=>b.classList.remove("active"));
+
+  if(button){
+    button.classList.add("active");
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"instant"
+  });
+
+  renderAll();
 }
 
 
-function formatDate(date){
-
-  return String(date.getDate()).padStart(2,"0")
-    +"/"+
-    String(date.getMonth()+1).padStart(2,"0");
-
-}
-
-
-function dateKey(date){
-
-  return date.getFullYear()+"-"+
-    String(date.getMonth()+1).padStart(2,"0")+"-"+
-    String(date.getDate()).padStart(2,"0");
-
-}
-
-
-/* =========================
-   HOME
-========================= */
+/* =====================================================
+ HOME
+===================================================== */
 
 function updateHome(){
 
-  let today=new Date();
+  const today=new Date();
 
-  document.getElementById("todayDate").innerText=
+  document.getElementById("todayDate").innerText =
     today.toLocaleDateString("ar-MA",{
       weekday:"long",
       day:"numeric",
-      month:"long"
+      month:"long",
+      year:"numeric"
     });
 
-  let total=tasks.length;
-  let done=tasks.filter(t=>t.done).length;
+  const total=tasks.length;
+  const done=tasks.filter(t=>t.done).length;
 
-  let percent=total?
-    Math.round(done/total*100):0;
+  const percent=total
+    ? Math.round(done/total*100)
+    : 0;
 
-  document.getElementById("homeProgress").style.width=
+  document.getElementById("homeProgress").style.width =
     percent+"%";
 
-  document.getElementById("homePercent").innerText=
+  document.getElementById("homePercent").innerText =
     percent+"%";
 
-  document.getElementById("statTasks").innerText=
+  document.getElementById("statTasks").innerText =
     tasks.length;
 
-  document.getElementById("statHabits").innerText=
-    habits.length;
+  document.getElementById("statHabits").innerText =
+    habits.filter(h=>h.name.trim()).length;
 
-  document.getElementById("statGoals").innerText=
+  document.getElementById("statGoals").innerText =
     goals.length;
 
-  document.getElementById("statAppointments").innerText=
+  document.getElementById("statAppointments").innerText =
     appointments.length;
-
 }
 
 
-/* =========================
-   TASKS
-========================= */
+/* =====================================================
+ TASKS
+===================================================== */
 
 function addTask(){
 
-  let input=document.getElementById("taskInput");
+  const input=document.getElementById("taskInput");
 
-  let text=input.value.trim();
+  const text=input.value.trim();
 
   if(!text)return;
 
@@ -1349,28 +1743,22 @@ function addTask(){
   input.value="";
 
   saveAll();
-
   renderTasks();
-
   updateHome();
-
 }
 
 
 function toggleTask(id){
 
-  let task=tasks.find(t=>t.id===id);
+  const task=tasks.find(t=>t.id===id);
 
   if(task){
     task.done=!task.done;
   }
 
   saveAll();
-
   renderTasks();
-
   updateHome();
-
 }
 
 
@@ -1379,22 +1767,23 @@ function deleteTask(id){
   tasks=tasks.filter(t=>t.id!==id);
 
   saveAll();
-
   renderTasks();
-
   updateHome();
-
 }
 
 
 function renderTasks(){
 
-  let list=document.getElementById("taskList");
+  const list=document.getElementById("taskList");
 
   if(!tasks.length){
 
-    list.innerHTML=
-    '<div style="text-align:center;padding:40px;color:#999">لا توجد مهام بعد 🌿</div>';
+    list.innerHTML=`
+      <div class="empty">
+        لا توجد مهام بعد. 🌿<br>
+        أضيفي أول شيء تريدين إنجازه.
+      </div>
+    `;
 
     return;
   }
@@ -1403,7 +1792,9 @@ function renderTasks(){
 
     <div class="taskItem ${t.done?"done":""}">
 
-      <input type="checkbox"
+      <input
+        class="taskCheck"
+        type="checkbox"
         ${t.done?"checked":""}
         onchange="toggleTask(${t.id})">
 
@@ -1411,55 +1802,206 @@ function renderTasks(){
         ${escapeHTML(t.text)}
       </div>
 
-      <button class="delete"
+      <button
+        class="delete"
         onclick="deleteTask(${t.id})">
-        ×
+        حذف
       </button>
 
     </div>
 
   `).join("");
-
 }
 
 
-/* =========================
-   HABITS
-========================= */
+/* =====================================================
+ HABIT DATES
+===================================================== */
 
-function addHabit(){
+function getStartOfWeek(){
 
-  let input=document.getElementById("habitInput");
+  const now=new Date();
 
-  let text=input.value.trim();
+  now.setHours(0,0,0,0);
 
-  if(!text)return;
+  const day=now.getDay();
+
+  const diff=day===0 ? -6 : 1-day;
+
+  now.setDate(now.getDate()+diff);
+
+  now.setDate(
+    now.getDate()+(habitWeekOffset*7)
+  );
+
+  return now;
+}
+
+
+function getHabitDates(){
+
+  const start=getStartOfWeek();
+
+  const dates=[];
+
+  for(let i=0;i<7;i++){
+
+    const d=new Date(start);
+
+    d.setDate(start.getDate()+i);
+
+    dates.push(d);
+
+  }
+
+  return dates;
+}
+
+
+function dateKey(date){
+
+  return date.getFullYear()+"-"+
+    String(date.getMonth()+1).padStart(2,"0")+"-"+
+    String(date.getDate()).padStart(2,"0");
+}
+
+
+function formatDate(date){
+
+  return String(date.getDate()).padStart(2,"0")+
+    "/"+
+    String(date.getMonth()+1).padStart(2,"0");
+}
+
+
+function getArabicDay(date){
+
+  const days=[
+    "الأحد",
+    "الإثنين",
+    "الثلاثاء",
+    "الأربعاء",
+    "الخميس",
+    "الجمعة",
+    "السبت"
+  ];
+
+  return days[date.getDay()];
+}
+
+
+function changeHabitWeek(direction){
+
+  habitWeekOffset+=direction;
+
+  renderHabits();
+}
+
+
+/* =====================================================
+ HABIT ROWS
+===================================================== */
+
+function addHabitRow(){
 
   habits.push({
-    id:Date.now(),
-    name:text,
+    id:Date.now()+Math.random(),
+    name:"",
     time:"",
     days:{}
   });
 
-  input.value="";
-
-  saveAll();
-
+  saveHabitsOnly();
   renderHabits();
-
   updateHome();
 
+  setTimeout(()=>{
+
+    const outer=document.querySelector(".tableOuter");
+
+    if(outer){
+      outer.scrollLeft=0;
+    }
+
+  },50);
+}
+
+
+function updateHabitName(id,value){
+
+  const habit=habits.find(h=>String(h.id)===String(id));
+
+  if(habit){
+
+    habit.name=value;
+
+    saveHabitsOnly();
+    updateHome();
+
+  }
+}
+
+
+function updateHabitTime(id,value){
+
+  const habit=habits.find(h=>String(h.id)===String(id));
+
+  if(habit){
+
+    habit.time=value;
+
+    saveHabitsOnly();
+
+  }
+}
+
+
+function deleteHabit(id){
+
+  habits=habits.filter(
+    h=>String(h.id)!==String(id)
+  );
+
+  /*
+     دائماً نخلي 15 سطر على الأقل
+  */
+
+  while(habits.length<15){
+
+    habits.push({
+      id:Date.now()+Math.random(),
+      name:"",
+      time:"",
+      days:{}
+    });
+
+  }
+
+  saveHabitsOnly();
+  renderHabits();
+  updateHome();
 }
 
 
 function toggleHabitDay(id,key){
 
-  let habit=habits.find(h=>h.id===id);
+  const habit=habits.find(
+    h=>String(h.id)===String(id)
+  );
 
   if(!habit)return;
 
-  let current=habit.days[key] || 0;
+  if(!habit.days){
+    habit.days={};
+  }
+
+  const current=habit.days[key] || 0;
+
+  /*
+     0 = فارغ
+     1 = أنجزت
+     2 = لم أنجز
+  */
 
   if(current===0){
     habit.days[key]=1;
@@ -1471,116 +2013,81 @@ function toggleHabitDay(id,key){
     habit.days[key]=0;
   }
 
-  saveAll();
-
+  saveHabitsOnly();
   renderHabits();
-
-}
-
-
-function updateHabitName(id,value){
-
-  let habit=habits.find(h=>h.id===id);
-
-  if(habit){
-
-    habit.name=value;
-
-    saveAll();
-
-  }
-
-}
-
-
-function updateHabitTime(id,value){
-
-  let habit=habits.find(h=>h.id===id);
-
-  if(habit){
-
-    habit.time=value;
-
-    saveAll();
-
-  }
-
-}
-
-
-function deleteHabit(id){
-
-  habits=habits.filter(h=>h.id!==id);
-
-  saveAll();
-
-  renderHabits();
-
-  updateHome();
-
 }
 
 
 function renderHabits(){
 
-  let header=document.getElementById("habitHeader");
+  const header=document.getElementById("habitHeaderRow");
+  const body=document.getElementById("habitTableBody");
 
-  let body=document.getElementById("habitTableBody");
+  const dates=getHabitDates();
 
-  let dates=getDates();
+  const first=dates[0];
+  const last=dates[6];
+
+  document.getElementById("habitWeekTitle").innerText =
+    formatDate(first)+" — "+formatDate(last);
 
   header.innerHTML=`
 
-    <th style="min-width:230px">
-      الوقت · العادة
+    <th class="timeHead">
+      الوقت
+    </th>
+
+    <th class="habitHead">
+      العادة
     </th>
 
     ${dates.map(d=>`
-      <th>
-        ${formatDate(d)}
+
+      <th class="dateHead">
+
+        <span class="dayName">
+          ${getArabicDay(d)}
+        </span>
+
+        <span class="dateNumber">
+          ${formatDate(d)}
+        </span>
+
       </th>
+
     `).join("")}
 
   `;
 
-  if(!habits.length){
 
-    body.innerHTML=`
-
-      <tr>
-        <td colspan="8"
-          style="padding:45px;text-align:center;color:#999">
-          أضيفي أول عادة من الأعلى 🌱
-        </td>
-      </tr>
-
-    `;
-
-    return;
-
-  }
-
-  body.innerHTML=habits.map(h=>`
+  body.innerHTML=habits.map((h,index)=>`
 
     <tr>
 
-      <td>
+      <td class="timeCell">
 
-        <div class="habitName">
+        <input
+          class="habitTime"
+          type="time"
+          value="${escapeAttr(h.time || "")}"
+          onchange="updateHabitTime('${h.id}',this.value)">
+
+      </td>
+
+      <td class="nameCell">
+
+        <div style="display:flex;align-items:center;gap:3px">
 
           <input
-            class="timeInput"
-            type="time"
-            value="${h.time||""}"
-            onchange="updateHabitTime(${h.id},this.value)">
+            class="habitNameInput"
+            value="${escapeAttr(h.name || "")}"
+            placeholder="${index+1}. اكتبي العادة هنا"
+            onchange="updateHabitName('${h.id}',this.value)">
 
-          <input
-            value="${escapeHTML(h.name)}"
-            placeholder="اكتبي العادة"
-            onchange="updateHabitName(${h.id},this.value)">
-
-          <button class="habitDelete"
-            onclick="deleteHabit(${h.id})">
+          <button
+            class="rowDelete"
+            title="حذف السطر"
+            onclick="deleteHabit('${h.id}')">
             ×
           </button>
 
@@ -1590,23 +2097,31 @@ function renderHabits(){
 
       ${dates.map(d=>{
 
-        let key=dateKey(d);
+        const key=dateKey(d);
 
-        let state=h.days[key]||0;
+        const state=
+          h.days && h.days[key]
+            ? h.days[key]
+            : 0;
 
-        let symbol=
-          state===1?"✓":
-          state===2?"×":"•";
+        let symbol="•";
+        let cls="markEmpty";
 
-        let cls=
-          state===1?"doneMark":
-          state===2?"failMark":"emptyMark";
+        if(state===1){
+          symbol="✅";
+          cls="markDone";
+        }
+
+        if(state===2){
+          symbol="⛔️";
+          cls="markMissed";
+        }
 
         return `
 
           <td
-            class="dayCell ${cls}"
-            onclick="toggleHabitDay(${h.id},'${key}')">
+            class="markCell ${cls}"
+            onclick="toggleHabitDay('${h.id}','${key}')">
 
             ${symbol}
 
@@ -1619,24 +2134,26 @@ function renderHabits(){
     </tr>
 
   `).join("");
-
 }
 
 
-/* =========================
-   APPOINTMENTS
-========================= */
+/* =====================================================
+ APPOINTMENTS
+===================================================== */
 
 function addAppointment(){
 
-  let text=
-    document.getElementById("appointmentInput").value.trim();
+  const text=
+    document.getElementById("appointmentInput")
+      .value.trim();
 
-  let date=
-    document.getElementById("appointmentDate").value;
+  const date=
+    document.getElementById("appointmentDate")
+      .value;
 
-  let time=
-    document.getElementById("appointmentTime").value;
+  const time=
+    document.getElementById("appointmentTime")
+      .value;
 
   if(!text || !date)return;
 
@@ -1653,104 +2170,118 @@ function addAppointment(){
   document.getElementById("appointmentTime").value="";
 
   saveAll();
-
   renderAppointments();
-
   updateHome();
-
 }
 
 
 function toggleAppointment(id){
 
-  let a=appointments.find(x=>x.id===id);
+  const item=appointments.find(a=>a.id===id);
 
-  if(a)a.done=!a.done;
+  if(item){
+    item.done=!item.done;
+  }
 
   saveAll();
-
   renderAppointments();
-
 }
 
 
 function deleteAppointment(id){
 
   appointments=
-    appointments.filter(x=>x.id!==id);
+    appointments.filter(a=>a.id!==id);
 
   saveAll();
-
   renderAppointments();
-
   updateHome();
-
 }
 
 
 function renderAppointments(){
 
-  let list=document.getElementById("appointmentList");
+  const list=document.getElementById("appointmentList");
 
   if(!appointments.length){
 
-    list.innerHTML=
-    '<div style="text-align:center;padding:40px;color:#888">لا توجد مواعيد 🌿</div>';
+    list.innerHTML=`
+      <div class="empty">
+        لا توجد مواعيد بعد. 🌿
+      </div>
+    `;
 
     return;
-
   }
 
-  let sorted=[...appointments].sort((a,b)=>
-    (a.date+a.time).localeCompare(b.date+b.time)
+  const sorted=[...appointments].sort((a,b)=>
+    (a.date+a.time).localeCompare(
+      b.date+b.time
+    )
   );
 
   list.innerHTML=sorted.map(a=>`
 
     <div class="appointment ${a.done?"done":""}">
 
-      <strong>📌 ${escapeHTML(a.text)}</strong>
-
-      <div class="small">
-        📅 ${a.date}
-        ${a.time? " · ⏰ "+a.time:""}
+      <div class="appointmentTitle">
+        📌 ${escapeHTML(a.text)}
       </div>
 
-      <button
-        style="border:0;background:#e4f2ef;color:#17665f;border-radius:10px;padding:8px 12px;margin-top:8px"
-        onclick="toggleAppointment(${a.id})">
+      <div class="appointmentMeta">
+        📅 ${escapeHTML(a.date)}
+        ${a.time ? "　⏰ "+escapeHTML(a.time) : ""}
+      </div>
 
-        ${a.done?"✓ تم":"تحديد كمنجز"}
+      <div style="margin-top:12px">
 
-      </button>
+        <button
+          style="
+            border:0;
+            background:#e3f4f0;
+            color:#11665d;
+            border-radius:11px;
+            padding:8px 12px;
+            font-size:12px;
+            font-weight:bold;
+          "
+          onclick="toggleAppointment(${a.id})">
 
-      <button class="delete"
-        onclick="deleteAppointment(${a.id})">
-        حذف
-      </button>
+          ${a.done ? "✓ تم" : "تحديد كمنجز"}
+
+        </button>
+
+        <button
+          class="delete"
+          onclick="deleteAppointment(${a.id})">
+          حذف
+        </button>
+
+      </div>
 
     </div>
 
   `).join("");
-
 }
 
 
-/* =========================
-   GOALS
-========================= */
+/* =====================================================
+ GOALS
+===================================================== */
 
 function addGoal(){
 
-  let title=
-    document.getElementById("goalTitle").value.trim();
+  const title=
+    document.getElementById("goalTitle")
+      .value.trim();
 
-  let stepsText=
-    document.getElementById("goalSteps").value.trim();
+  const stepsText=
+    document.getElementById("goalSteps")
+      .value.trim();
 
   if(!title)return;
 
-  let steps=stepsText
+  const steps=stepsText
     .split("\n")
     .map(x=>x.trim())
     .filter(Boolean)
@@ -1769,26 +2300,22 @@ function addGoal(){
   document.getElementById("goalSteps").value="";
 
   saveAll();
-
   renderGoals();
-
   updateHome();
-
 }
 
 
 function toggleGoalStep(id,index){
 
-  let g=goals.find(x=>x.id===id);
+  const goal=goals.find(g=>g.id===id);
 
-  if(g && g.steps[index]){
-    g.steps[index].done=!g.steps[index].done;
+  if(goal && goal.steps[index]){
+    goal.steps[index].done=
+      !goal.steps[index].done;
   }
 
   saveAll();
-
   renderGoals();
-
 }
 
 
@@ -1797,58 +2324,59 @@ function deleteGoal(id){
   goals=goals.filter(g=>g.id!==id);
 
   saveAll();
-
   renderGoals();
-
   updateHome();
-
 }
 
 
 function renderGoals(){
 
-  let list=document.getElementById("goalList");
+  const list=document.getElementById("goalList");
 
   if(!goals.length){
 
-    list.innerHTML=
-    '<div style="text-align:center;padding:40px;color:#999">أول هدف ينتظر أن تكتبيه 🎯</div>';
+    list.innerHTML=`
+      <div class="empty">
+        اكتبي أول هدف تريدين الوصول إليه. 🎯
+      </div>
+    `;
 
     return;
-
   }
 
   list.innerHTML=goals.map(g=>{
 
-    let total=g.steps.length;
+    const total=g.steps.length;
+    const done=g.steps.filter(s=>s.done).length;
 
-    let done=g.steps.filter(s=>s.done).length;
-
-    let percent=total?
-      Math.round(done/total*100):0;
+    const percent=total
+      ? Math.round(done/total*100)
+      : 0;
 
     return `
 
-      <div class="goal">
+      <div class="goalCard">
 
-        <div class="goalTitle">
+        <div class="goalName">
           🎯 ${escapeHTML(g.title)}
         </div>
 
         <div class="small">
-          ${done}/${total} خطوات · ${percent}%
+          ${done} من ${total} خطوات · ${percent}%
         </div>
 
-        <div style="height:7px;background:#eee5d5;border-radius:10px;margin:10px 0">
-          <div style="width:${percent}%;height:100%;background:#a76b23;border-radius:10px"></div>
+        <div class="goalBar">
+          <div style="width:${percent}%"></div>
         </div>
 
         ${
-          g.steps.map((s,i)=>`
+          g.steps.length
+          ? g.steps.map((s,i)=>`
 
             <div class="goalStep ${s.done?"done":""}">
 
-              <input type="checkbox"
+              <input
+                type="checkbox"
                 ${s.done?"checked":""}
                 onchange="toggleGoalStep(${g.id},${i})">
 
@@ -1859,30 +2387,38 @@ function renderGoals(){
             </div>
 
           `).join("")
+          : `
+            <div class="small">
+              لم تضيفي خطوات لهذا الهدف بعد.
+            </div>
+          `
         }
 
-        <button class="delete"
-          onclick="deleteGoal(${g.id})">
-          حذف الهدف
-        </button>
+        <div style="margin-top:10px">
+          <button
+            class="delete"
+            onclick="deleteGoal(${g.id})">
+            حذف الهدف
+          </button>
+        </div>
 
       </div>
 
     `;
 
   }).join("");
-
 }
 
 
-/* =========================
-   PROBLEMS
-========================= */
+/* =====================================================
+ PROBLEMS
+===================================================== */
 
 function addProblem(){
 
-  let title=
-    document.getElementById("problemTitle").value.trim();
+  const title=
+    document.getElementById("problemTitle")
+      .value.trim();
 
   if(!title)return;
 
@@ -1893,13 +2429,16 @@ function addProblem(){
     title:title,
 
     cause:
-      document.getElementById("problemCause").value.trim(),
+      document.getElementById("problemCause")
+        .value.trim(),
 
     solution:
-      document.getElementById("problemSolution").value.trim(),
+      document.getElementById("problemSolution")
+        .value.trim(),
 
     steps:
-      document.getElementById("problemSteps").value.trim()
+      document.getElementById("problemSteps")
+        .value.trim()
 
   });
 
@@ -1909,60 +2448,76 @@ function addProblem(){
   document.getElementById("problemSteps").value="";
 
   saveAll();
-
   renderProblems();
-
 }
 
 
 function deleteProblem(id){
 
-  problems=problems.filter(p=>p.id!==id);
+  problems=
+    problems.filter(p=>p.id!==id);
 
   saveAll();
-
   renderProblems();
-
 }
 
 
 function renderProblems(){
 
-  let list=document.getElementById("problemList");
+  const list=document.getElementById("problemList");
 
   if(!problems.length){
 
-    list.innerHTML=
-    '<div style="text-align:center;padding:40px;color:#888">هنا غادي نخرجو المشاكل من رأسك ونحطوها قدامنا باش نحلّوها 🧩</div>';
+    list.innerHTML=`
+      <div class="empty">
+        هنا سنخرج المشكلة من رأسك ونضعها أمامنا
+        حتى تصبح قابلة للحل. 🧩
+      </div>
+    `;
 
     return;
-
   }
 
   list.innerHTML=problems.map(p=>`
 
-    <div class="problem">
+    <div class="problemCard">
 
       <h3>
         🧩 ${escapeHTML(p.title)}
       </h3>
 
       <div class="problemBlock">
-        <strong>لماذا يحدث؟</strong><br>
-        ${escapeHTML(p.cause||"لم تكتبي بعد")}
+
+        <strong>لماذا يحدث؟</strong>
+
+        ${escapeHTML(
+          p.cause || "لم تكتبي السبب بعد."
+        )}
+
       </div>
 
       <div class="problemBlock">
-        <strong>ما الحل؟</strong><br>
-        ${escapeHTML(p.solution||"لم تكتبي بعد")}
+
+        <strong>ما الحل؟</strong>
+
+        ${escapeHTML(
+          p.solution || "لم تكتبي الحل بعد."
+        )}
+
       </div>
 
       <div class="problemBlock">
-        <strong>ماذا سأفعل؟</strong><br>
-        ${escapeHTML(p.steps||"لم تكتبي بعد")}
+
+        <strong>الخطة خطوة بخطوة</strong>
+
+        ${escapeHTML(
+          p.steps || "لم تكتبي الخطة بعد."
+        ).replace(/\n/g,"<br>")}
+
       </div>
 
-      <button class="delete"
+      <button
+        class="delete"
         onclick="deleteProblem(${p.id})">
         حذف
       </button>
@@ -1970,18 +2525,18 @@ function renderProblems(){
     </div>
 
   `).join("");
-
 }
 
 
-/* =========================
-   DREAMS
-========================= */
+/* =====================================================
+ DREAMS
+===================================================== */
 
 function saveDream(){
 
-  let value=
-    document.getElementById("dreamInput").value;
+  const value=
+    document.getElementById("dreamInput")
+      .value;
 
   localStorage.setItem(
     "myLifeDreams",
@@ -1990,21 +2545,28 @@ function saveDream(){
 
   document.getElementById("dreamSaved").innerText=
     "تم حفظ رؤيتك ✨";
-
 }
 
 
 function loadDream(){
 
   document.getElementById("dreamInput").value=
-    localStorage.getItem("myLifeDreams")||"";
-
+    localStorage.getItem("myLifeDreams") || "";
 }
 
 
-/* =========================
-   STORAGE
-========================= */
+/* =====================================================
+ STORAGE
+===================================================== */
+
+function saveHabitsOnly(){
+
+  localStorage.setItem(
+    "myLifeHabits",
+    JSON.stringify(habits)
+  );
+}
+
 
 function saveAll(){
 
@@ -2032,58 +2594,52 @@ function saveAll(){
     "myLifeProblems",
     JSON.stringify(problems)
   );
-
 }
 
 
-/* =========================
-   SECURITY
-========================= */
+/* =====================================================
+ SECURITY
+===================================================== */
 
-function escapeHTML(text){
+function escapeHTML(value){
 
-  return String(text)
-
+  return String(value)
     .replace(/&/g,"&amp;")
-
     .replace(/</g,"&lt;")
-
     .replace(/>/g,"&gt;")
-
     .replace(/"/g,"&quot;")
-
     .replace(/'/g,"&#039;");
-
 }
 
 
-/* =========================
-   RENDER
-========================= */
+function escapeAttr(value){
+
+  return escapeHTML(value);
+}
+
+
+/* =====================================================
+ RENDER
+===================================================== */
 
 function renderAll(){
 
   updateHome();
-
   renderTasks();
-
   renderHabits();
-
   renderAppointments();
-
   renderGoals();
-
   renderProblems();
-
   loadDream();
 
 }
 
 
-/* =========================
-   START
-========================= */
+/* =====================================================
+ START
+===================================================== */
 
+prepareHabits();
 renderAll();
 
 </script>
