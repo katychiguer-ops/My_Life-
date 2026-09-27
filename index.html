@@ -1,181 +1,1085 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Life</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<title>حياتي 💜</title>
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(160deg, #f8efff, #fff7fb);
-      color: #3f3150;
-    }
+<style>
+*{
+  box-sizing:border-box;
+}
 
-    .app {
-      max-width: 500px;
-      margin: auto;
-      padding: 24px 18px 40px;
-    }
+body{
+  margin:0;
+  font-family:Arial,"Tahoma",sans-serif;
+  background:linear-gradient(145deg,#f8efff,#fff8fc);
+  color:#40324d;
+}
 
-    .header {
-      text-align: center;
-      padding: 25px 10px;
-    }
+button,input,textarea,select{
+  font-family:inherit;
+}
 
-    .flower {
-      font-size: 42px;
-    }
+.app{
+  max-width:520px;
+  margin:auto;
+  padding:18px 15px 90px;
+}
 
-    h1 {
-      margin: 8px 0 5px;
-      font-size: 30px;
-    }
+/* HEADER */
 
-    .subtitle {
-      color: #8b7898;
-      margin: 0;
-    }
+.header{
+  text-align:center;
+  padding:20px 10px;
+}
 
-    .level {
-      background: white;
-      border-radius: 20px;
-      padding: 18px;
-      margin: 15px 0;
-      box-shadow: 0 5px 20px rgba(100, 70, 120, 0.08);
-    }
+.logo{
+  font-size:46px;
+}
 
-    .level-title {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
+.header h1{
+  margin:5px 0;
+  font-size:31px;
+}
 
-    .progress-bg {
-      height: 10px;
-      background: #eee4f3;
-      border-radius: 20px;
-      overflow: hidden;
-    }
+.header p{
+  margin:5px 0;
+  color:#8c7898;
+}
 
-    .progress {
-      width: 20%;
-      height: 100%;
-      background: #b993d6;
-      border-radius: 20px;
-    }
+/* NAV */
 
-    .card {
-      background: white;
-      padding: 18px;
-      border-radius: 20px;
-      margin: 12px 0;
-      box-shadow: 0 5px 20px rgba(100, 70, 120, 0.07);
-    }
+.nav{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  padding:8px 0 14px;
+  position:sticky;
+  top:0;
+  background:rgba(248,239,255,.94);
+  z-index:10;
+}
 
-    .card h2 {
-      margin-top: 0;
-      font-size: 19px;
-    }
+.nav button{
+  min-width:75px;
+  padding:9px 10px;
+  border:0;
+  border-radius:15px;
+  background:white;
+  color:#765783;
+  font-size:12px;
+  box-shadow:0 3px 12px rgba(100,70,120,.08);
+}
 
-    .card p {
-      color: #78687f;
-      line-height: 1.5;
-    }
+.nav button.active{
+  background:#a979c5;
+  color:white;
+}
 
-    .points {
-      font-size: 18px;
-      font-weight: bold;
-      color: #9a6bb8;
-    }
+/* SECTIONS */
 
-    button {
-      width: 100%;
-      border: none;
-      padding: 14px;
-      border-radius: 14px;
-      background: #b993d6;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      margin-top: 8px;
-    }
+.section{
+  display:none;
+}
 
-    button:active {
-      transform: scale(0.98);
-    }
+.section.active{
+  display:block;
+}
 
-    .quote {
-      text-align: center;
-      padding: 20px 10px;
-      color: #806d8a;
-      font-style: italic;
-    }
-  </style>
+/* CARDS */
+
+.card{
+  background:white;
+  border-radius:22px;
+  padding:18px;
+  margin:13px 0;
+  box-shadow:0 5px 22px rgba(100,70,120,.08);
+}
+
+.card h2{
+  margin-top:0;
+  font-size:20px;
+}
+
+.small{
+  color:#8a7891;
+  font-size:14px;
+  line-height:1.6;
+}
+
+/* PROGRESS */
+
+.progressBox{
+  background:white;
+  padding:18px;
+  border-radius:22px;
+  margin-bottom:15px;
+}
+
+.progressTop{
+  display:flex;
+  justify-content:space-between;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+.progressBg{
+  height:12px;
+  background:#eee4f4;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progressBar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#a978c5,#d39bd5);
+  border-radius:20px;
+  transition:.3s;
+}
+
+/* INPUTS */
+
+input,textarea,select{
+  width:100%;
+  border:1px solid #eadff0;
+  border-radius:14px;
+  padding:13px;
+  margin:6px 0;
+  background:#fffafd;
+  color:#40324d;
+  font-size:15px;
+}
+
+textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+/* BUTTONS */
+
+.mainBtn{
+  width:100%;
+  border:0;
+  padding:13px;
+  border-radius:15px;
+  background:#a979c5;
+  color:white;
+  font-size:15px;
+  font-weight:bold;
+  margin-top:8px;
+}
+
+.secondaryBtn{
+  border:0;
+  padding:9px 13px;
+  border-radius:12px;
+  background:#f1e5f5;
+  color:#765783;
+}
+
+/* TASK */
+
+.task{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:13px 5px;
+  border-bottom:1px solid #f0e8f2;
+}
+
+.task:last-child{
+  border-bottom:0;
+}
+
+.task input[type="checkbox"]{
+  width:21px;
+  height:21px;
+  margin:0;
+  accent-color:#a979c5;
+}
+
+.task.done span{
+  text-decoration:line-through;
+  color:#aaa;
+}
+
+.delete{
+  margin-right:auto;
+  border:0;
+  background:none;
+  color:#c38aaa;
+  font-size:17px;
+}
+
+/* HABITS */
+
+.habit{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:13px 4px;
+  border-bottom:1px solid #f0e8f2;
+}
+
+.habitCheck{
+  width:27px !important;
+  height:27px;
+  accent-color:#a979c5;
+}
+
+/* GOALS / PROBLEMS */
+
+.item{
+  background:#fcf8fd;
+  border-radius:17px;
+  padding:15px;
+  margin:10px 0;
+}
+
+.item h3{
+  margin:0 0 7px;
+}
+
+/* QUOTE */
+
+.quote{
+  text-align:center;
+  padding:20px 10px;
+  color:#806d8a;
+  font-style:italic;
+  line-height:1.7;
+}
+
+/* EMPTY */
+
+.empty{
+  text-align:center;
+  padding:25px;
+  color:#9b8aa2;
+}
+
+/* MOBILE */
+
+@media(max-width:380px){
+  .nav button{
+    min-width:68px;
+    font-size:11px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="app">
+<div class="app">
 
-    <div class="header">
-      <div class="flower">🌷</div>
-      <h1>MY LIFE</h1>
-      <p class="subtitle">Building my life, piece by piece.</p>
+<header class="header">
+  <div class="logo">🌷</div>
+  <h1>حياتي 💜</h1>
+  <p>نبني حياتي، خطوة بخطوة.</p>
+</header>
+
+<nav class="nav">
+  <button class="active" onclick="showSection('home',this)">🏠 الرئيسية</button>
+  <button onclick="showSection('tasks',this)">✅ مهامي</button>
+  <button onclick="showSection('habits',this)">🌷 عاداتي</button>
+  <button onclick="showSection('appointments',this)">📅 مواعيدي</button>
+  <button onclick="showSection('goals',this)">🎯 أهدافي</button>
+  <button onclick="showSection('problems',this)">🧩 مشاكلي</button>
+  <button onclick="showSection('dreams',this)">✨ أحلامي</button>
+</nav>
+
+
+<!-- HOME -->
+
+<section id="home" class="section active">
+
+  <div class="progressBox">
+    <div class="progressTop">
+      <span>تقدمك اليوم 🌷</span>
+      <span id="percent">0%</span>
     </div>
 
-    <div class="level">
-      <div class="level-title">
-        <span>LEVEL 01 — STUCK</span>
-        <span class="points">0 Life Points</span>
-      </div>
-
-      <div class="progress-bg">
-        <div class="progress"></div>
-      </div>
+    <div class="progressBg">
+      <div class="progressBar" id="progressBar"></div>
     </div>
 
-    <div class="card">
-      <h2>🧭 LIFE MAP</h2>
-      <p>Understand what is holding me back and what kind of life I want to build.</p>
-      <button>Open Life Map</button>
-    </div>
+    <p class="small" id="progressText">
+      كل خطوة صغيرة محسوبة 💜
+    </p>
+  </div>
 
-    <div class="card">
-      <h2>🎯 TODAY</h2>
-      <p>Choose only a few real actions for today.</p>
-      <button>My Actions</button>
-    </div>
+  <div class="card">
+    <h2>🌸 أهلاً بكِ في حياتك</h2>
+    <p class="small">
+      هذا المكان لكِ أنتِ.  
+      رتبي يومك، تابعي عاداتك، اكتبي أهدافك،
+      وحولي الأشياء التي تبدو كبيرة إلى خطوات صغيرة.
+    </p>
+  </div>
 
-    <div class="card">
-      <h2>📊 PROGRESS</h2>
-      <p>See whether I am actually moving forward, not just planning.</p>
-      <button>View Progress</button>
-    </div>
+  <div class="card">
+    <h2>☀️ اليوم</h2>
+    <div id="homeTasks"></div>
+  </div>
 
-    <div class="card">
-      <h2>🔎 WHAT'S MISSING?</h2>
-      <p>Find what is still stuck, what is improving, and what became a habit.</p>
-      <button>Weekly Review</button>
-    </div>
+  <div class="card">
+    <h2>💜 تذكير اليوم</h2>
+    <p class="quote">
+      لا تحتاجين أن تغيري حياتك كلها اليوم.<br>
+      فقط افعلي الشيء الصغير الذي يقربك منها.
+    </p>
+  </div>
 
-    <div class="card">
-      <h2>🌍 MY LIFE PROJECTS</h2>
-      <p>Health · Study · Money · Stability · Love · Travel · Faith · Joy</p>
-      <button>Open Projects</button>
-    </div>
+</section>
 
-    <div class="quote">
-      “I don't need a perfect life. I need to keep building mine.”
-    </div>
+
+<!-- TASKS -->
+
+<section id="tasks" class="section">
+
+  <div class="card">
+    <h2>✅ مهامي اليومية</h2>
+
+    <input id="taskInput" placeholder="اكتبي شيئاً تريدين إنجازه...">
+
+    <button class="mainBtn" onclick="addTask()">
+      ＋ إضافة مهمة
+    </button>
+
+    <div id="taskList"></div>
+  </div>
+
+</section>
+
+
+<!-- HABITS -->
+
+<section id="habits" class="section">
+
+  <div class="card">
+    <h2>🌷 عاداتي اليومية</h2>
+
+    <input id="habitInput" placeholder="مثلاً: شرب الماء، الدراسة، المشي...">
+
+    <button class="mainBtn" onclick="addHabit()">
+      ＋ إضافة عادة
+    </button>
+
+    <div id="habitList"></div>
+  </div>
+
+</section>
+
+
+<!-- APPOINTMENTS -->
+
+<section id="appointments" class="section">
+
+  <div class="card">
+    <h2>📅 مواعيدي</h2>
+
+    <input id="appointmentInput" placeholder="ما الذي يجب القيام به؟">
+
+    <input id="appointmentDate" type="date">
+
+    <button class="mainBtn" onclick="addAppointment()">
+      ＋ إضافة موعد
+    </button>
+
+    <div id="appointmentList"></div>
+  </div>
+
+</section>
+
+
+<!-- GOALS -->
+
+<section id="goals" class="section">
+
+  <div class="card">
+
+    <h2>🎯 أهدافي</h2>
+
+    <input id="goalTitle" placeholder="ما هو الهدف؟">
+
+    <textarea id="goalSteps"
+      placeholder="اكتبي الخطوات التي ستوصلك إليه، كل خطوة في سطر..."></textarea>
+
+    <button class="mainBtn" onclick="addGoal()">
+      ＋ إضافة هدف
+    </button>
+
+    <div id="goalList"></div>
 
   </div>
+
+</section>
+
+
+<!-- PROBLEMS -->
+
+<section id="problems" class="section">
+
+  <div class="card">
+
+    <h2>🧩 مشاكلي</h2>
+
+    <p class="small">
+      اكتبي المشكلة كما هي، ثم حاولي تحويلها إلى شيء يمكن التعامل معه.
+    </p>
+
+    <input id="problemTitle" placeholder="ما المشكلة؟">
+
+    <textarea id="problemCause"
+      placeholder="ما الذي يجعل هذه المشكلة مستمرة؟"></textarea>
+
+    <textarea id="problemSolution"
+      placeholder="ما الحل الذي أستطيع القيام به؟"></textarea>
+
+    <textarea id="problemSteps"
+      placeholder="ما الخطوات العملية؟"></textarea>
+
+    <button class="mainBtn" onclick="addProblem()">
+      ＋ حفظ المشكلة وخطتها
+    </button>
+
+    <div id="problemList"></div>
+
+  </div>
+
+</section>
+
+
+<!-- DREAMS -->
+
+<section id="dreams" class="section">
+
+  <div class="card">
+
+    <h2>✨ أحلامي</h2>
+
+    <textarea id="dreamInput"
+      placeholder="اكتبي هنا الحياة التي تتمنين أن تعيشيها..."></textarea>
+
+    <button class="mainBtn" onclick="saveDream()">
+      💜 حفظ أحلامي
+    </button>
+
+    <p id="dreamSaved" class="small"></p>
+
+  </div>
+
+</section>
+
+
+<div class="quote">
+  “حياتي لا تحتاج أن تكون مثالية، أحتاج فقط أن أستمر في بنائها.” 🌷
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   DATA
+========================= */
+
+let tasks = JSON.parse(localStorage.getItem("lifeTasks") || "[]");
+let habits = JSON.parse(localStorage.getItem("lifeHabits") || "[]");
+let appointments = JSON.parse(localStorage.getItem("lifeAppointments") || "[]");
+let goals = JSON.parse(localStorage.getItem("lifeGoals") || "[]");
+let problems = JSON.parse(localStorage.getItem("lifeProblems") || "[]");
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function showSection(id,button){
+
+  document.querySelectorAll(".section")
+    .forEach(section => section.classList.remove("active"));
+
+  document.getElementById(id).classList.add("active");
+
+  document.querySelectorAll(".nav button")
+    .forEach(btn => btn.classList.remove("active"));
+
+  button.classList.add("active");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+/* =========================
+   TASKS
+========================= */
+
+function addTask(){
+
+  const input=document.getElementById("taskInput");
+  const text=input.value.trim();
+
+  if(!text)return;
+
+  tasks.push({
+    id:Date.now(),
+    text:text,
+    done:false
+  });
+
+  input.value="";
+
+  saveAll();
+  renderTasks();
+}
+
+
+function toggleTask(id){
+
+  const task=tasks.find(t=>t.id===id);
+
+  if(task){
+    task.done=!task.done;
+  }
+
+  saveAll();
+  renderTasks();
+}
+
+
+function deleteTask(id){
+
+  tasks=tasks.filter(t=>t.id!==id);
+
+  saveAll();
+  renderTasks();
+}
+
+
+function renderTasks(){
+
+  const list=document.getElementById("taskList");
+  const home=document.getElementById("homeTasks");
+
+  if(tasks.length===0){
+
+    list.innerHTML='<div class="empty">ما عندك حتى مهمة بعد 🌷</div>';
+    home.innerHTML='<div class="empty">أضيفي أول مهمة لليوم 💜</div>';
+
+    updateProgress();
+    return;
+  }
+
+  list.innerHTML=tasks.map(task=>`
+
+    <div class="task ${task.done ? "done":""}">
+
+      <input
+        type="checkbox"
+        ${task.done ? "checked":""}
+        onchange="toggleTask(${task.id})">
+
+      <span>${escapeHTML(task.text)}</span>
+
+      <button class="delete"
+        onclick="deleteTask(${task.id})">×</button>
+
+    </div>
+
+  `).join("");
+
+  const firstTasks=tasks.slice(0,5);
+
+  home.innerHTML=firstTasks.map(task=>`
+
+    <div class="task ${task.done ? "done":""}">
+
+      <input
+        type="checkbox"
+        ${task.done ? "checked":""}
+        onchange="toggleTask(${task.id})">
+
+      <span>${escapeHTML(task.text)}</span>
+
+    </div>
+
+  `).join("");
+
+  updateProgress();
+}
+
+
+/* =========================
+   HABITS
+========================= */
+
+function addHabit(){
+
+  const input=document.getElementById("habitInput");
+  const text=input.value.trim();
+
+  if(!text)return;
+
+  habits.push({
+    id:Date.now(),
+    text:text,
+    done:false
+  });
+
+  input.value="";
+
+  saveAll();
+  renderHabits();
+}
+
+
+function toggleHabit(id){
+
+  const habit=habits.find(h=>h.id===id);
+
+  if(habit){
+    habit.done=!habit.done;
+  }
+
+  saveAll();
+  renderHabits();
+}
+
+
+function deleteHabit(id){
+
+  habits=habits.filter(h=>h.id!==id);
+
+  saveAll();
+  renderHabits();
+}
+
+
+function renderHabits(){
+
+  const list=document.getElementById("habitList");
+
+  if(habits.length===0){
+    list.innerHTML='<div class="empty">أضيفي العادات التي تريدين بناءها 🌷</div>';
+    return;
+  }
+
+  list.innerHTML=habits.map(habit=>`
+
+    <div class="habit">
+
+      <span>${escapeHTML(habit.text)}</span>
+
+      <input
+        class="habitCheck"
+        type="checkbox"
+        ${habit.done ? "checked":""}
+        onchange="toggleHabit(${habit.id})">
+
+      <button class="delete"
+        onclick="deleteHabit(${habit.id})">×</button>
+
+    </div>
+
+  `).join("");
+}
+
+
+/* =========================
+   APPOINTMENTS
+========================= */
+
+function addAppointment(){
+
+  const text=document.getElementById("appointmentInput").value.trim();
+  const date=document.getElementById("appointmentDate").value;
+
+  if(!text || !date)return;
+
+  appointments.push({
+    id:Date.now(),
+    text:text,
+    date:date,
+    done:false
+  });
+
+  document.getElementById("appointmentInput").value="";
+  document.getElementById("appointmentDate").value="";
+
+  saveAll();
+  renderAppointments();
+}
+
+
+function toggleAppointment(id){
+
+  const appointment=appointments.find(a=>a.id===id);
+
+  if(appointment){
+    appointment.done=!appointment.done;
+  }
+
+  saveAll();
+  renderAppointments();
+}
+
+
+function deleteAppointment(id){
+
+  appointments=appointments.filter(a=>a.id!==id);
+
+  saveAll();
+  renderAppointments();
+}
+
+
+function renderAppointments(){
+
+  const list=document.getElementById("appointmentList");
+
+  if(appointments.length===0){
+    list.innerHTML='<div class="empty">لا توجد مواعيد مسجلة 📅</div>';
+    return;
+  }
+
+  appointments.sort((a,b)=>a.date.localeCompare(b.date));
+
+  list.innerHTML=appointments.map(a=>`
+
+    <div class="item">
+
+      <h3>📅 ${escapeHTML(a.text)}</h3>
+
+      <p class="small">
+        التاريخ: ${a.date}
+      </p>
+
+      <button
+        class="secondaryBtn"
+        onclick="toggleAppointment(${a.id})">
+
+        ${a.done ? "✅ تم الإنجاز" : "⭕ لم يتم بعد"}
+
+      </button>
+
+      <button
+        class="delete"
+        onclick="deleteAppointment(${a.id})">
+
+        حذف
+
+      </button>
+
+    </div>
+
+  `).join("");
+}
+
+
+/* =========================
+   GOALS
+========================= */
+
+function addGoal(){
+
+  const title=document.getElementById("goalTitle").value.trim();
+  const stepsText=document.getElementById("goalSteps").value.trim();
+
+  if(!title)return;
+
+  const steps=stepsText
+    .split("\n")
+    .map(s=>s.trim())
+    .filter(Boolean)
+    .map(text=>({
+      text:text,
+      done:false
+    }));
+
+  goals.push({
+    id:Date.now(),
+    title:title,
+    steps:steps
+  });
+
+  document.getElementById("goalTitle").value="";
+  document.getElementById("goalSteps").value="";
+
+  saveAll();
+  renderGoals();
+}
+
+
+function toggleGoalStep(goalId,index){
+
+  const goal=goals.find(g=>g.id===goalId);
+
+  if(goal && goal.steps[index]){
+    goal.steps[index].done=!goal.steps[index].done;
+  }
+
+  saveAll();
+  renderGoals();
+}
+
+
+function deleteGoal(id){
+
+  goals=goals.filter(g=>g.id!==id);
+
+  saveAll();
+  renderGoals();
+}
+
+
+function renderGoals(){
+
+  const list=document.getElementById("goalList");
+
+  if(goals.length===0){
+    list.innerHTML='<div class="empty">اكتبي أول هدف كبير تريدين الوصول إليه 🎯</div>';
+    return;
+  }
+
+  list.innerHTML=goals.map(goal=>`
+
+    <div class="item">
+
+      <h3>🎯 ${escapeHTML(goal.title)}</h3>
+
+      ${
+        goal.steps.length
+        ?
+        goal.steps.map((step,index)=>`
+
+          <div class="task ${step.done ? "done":""}">
+
+            <input
+              type="checkbox"
+              ${step.done ? "checked":""}
+              onchange="toggleGoalStep(${goal.id},${index})">
+
+            <span>${escapeHTML(step.text)}</span>
+
+          </div>
+
+        `).join("")
+        :
+        '<p class="small">لم تضيفي خطوات بعد.</p>'
+      }
+
+      <button
+        class="delete"
+        onclick="deleteGoal(${goal.id})">
+
+        حذف الهدف
+
+      </button>
+
+    </div>
+
+  `).join("");
+}
+
+
+/* =========================
+   PROBLEMS
+========================= */
+
+function addProblem(){
+
+  const title=document.getElementById("problemTitle").value.trim();
+  const cause=document.getElementById("problemCause").value.trim();
+  const solution=document.getElementById("problemSolution").value.trim();
+  const steps=document.getElementById("problemSteps").value.trim();
+
+  if(!title)return;
+
+  problems.push({
+    id:Date.now(),
+    title:title,
+    cause:cause,
+    solution:solution,
+    steps:steps
+  });
+
+  document.getElementById("problemTitle").value="";
+  document.getElementById("problemCause").value="";
+  document.getElementById("problemSolution").value="";
+  document.getElementById("problemSteps").value="";
+
+  saveAll();
+  renderProblems();
+}
+
+
+function deleteProblem(id){
+
+  problems=problems.filter(p=>p.id!==id);
+
+  saveAll();
+  renderProblems();
+}
+
+
+function renderProblems(){
+
+  const list=document.getElementById("problemList");
+
+  if(problems.length===0){
+
+    list.innerHTML=
+      '<div class="empty">هنا غادي نفهمو المشاكل ونحوّلوها لخطط عملية 🧩</div>';
+
+    return;
+  }
+
+  list.innerHTML=problems.map(p=>`
+
+    <div class="item">
+
+      <h3>🧩 ${escapeHTML(p.title)}</h3>
+
+      <p><strong>السبب:</strong><br>
+      ${escapeHTML(p.cause || "لم تكتبي بعد")}</p>
+
+      <p><strong>الحل:</strong><br>
+      ${escapeHTML(p.solution || "لم تكتبي بعد")}</p>
+
+      <p><strong>الخطوات:</strong><br>
+      ${escapeHTML(p.steps || "لم تكتبي بعد")}</p>
+
+      <button
+        class="delete"
+        onclick="deleteProblem(${p.id})">
+
+        حذف
+
+      </button>
+
+    </div>
+
+  `).join("");
+}
+
+
+/* =========================
+   DREAMS
+========================= */
+
+function saveDream(){
+
+  const dream=document.getElementById("dreamInput").value;
+
+  localStorage.setItem("lifeDreams",dream);
+
+  document.getElementById("dreamSaved").innerText=
+    "تم حفظ أحلامك 💜";
+
+}
+
+
+function loadDream(){
+
+  const dream=localStorage.getItem("lifeDreams") || "";
+
+  document.getElementById("dreamInput").value=dream;
+
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+function updateProgress(){
+
+  const total=tasks.length+habits.length;
+
+  const completed=
+    tasks.filter(t=>t.done).length+
+    habits.filter(h=>h.done).length;
+
+  let percent=0;
+
+  if(total>0){
+    percent=Math.round((completed/total)*100);
+  }
+
+  document.getElementById("percent").innerText=percent+"%";
+
+  document.getElementById("progressBar").style.width=
+    percent+"%";
+
+  let text="كل خطوة صغيرة محسوبة 💜";
+
+  if(percent===100 && total>0){
+    text="أنجزتِ كل شيء! فخورة بكِ 🌷✨";
+  }
+  else if(percent>=70){
+    text="ممتاز، كملي بنفس الهدوء 💜";
+  }
+  else if(percent>=40){
+    text="أنتِ تتحركين للأمام 🌸";
+  }
+
+  document.getElementById("progressText").innerText=text;
+}
+
+
+/* =========================
+   SAVE
+========================= */
+
+function saveAll(){
+
+  localStorage.setItem("lifeTasks",JSON.stringify(tasks));
+  localStorage.setItem("lifeHabits",JSON.stringify(habits));
+  localStorage.setItem("lifeAppointments",JSON.stringify(appointments));
+  localStorage.setItem("lifeGoals",JSON.stringify(goals));
+  localStorage.setItem("lifeProblems",JSON.stringify(problems));
+
+}
+
+
+/* =========================
+   SECURITY
+========================= */
+
+function escapeHTML(text){
+
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+renderTasks();
+renderHabits();
+renderAppointments();
+renderGoals();
+renderProblems();
+loadDream();
+updateProgress();
+
+</script>
 
 </body>
 </html>
