@@ -4,271 +4,730 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>حياتي 💜</title>
+<title>حياتي | My Life</title>
+
+<link rel="icon" type="image/png"
+href="A632EA99-79D1-4A97-83E8-B8BBD092EFC0.png">
 
 <style>
+
 *{
   box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
   margin:0;
   font-family:Arial,"Tahoma",sans-serif;
-  background:linear-gradient(145deg,#f8efff,#fff8fc);
-  color:#40324d;
+  background:#f7f5f0;
+  color:#252525;
 }
 
 button,input,textarea,select{
   font-family:inherit;
 }
 
+button{
+  cursor:pointer;
+}
+
 .app{
-  max-width:520px;
+  max-width:600px;
   margin:auto;
-  padding:18px 15px 90px;
+  min-height:100vh;
+  padding-bottom:90px;
 }
 
-/* HEADER */
-
-.header{
-  text-align:center;
-  padding:20px 10px;
-}
-
-.logo{
-  font-size:46px;
-}
-
-.header h1{
-  margin:5px 0;
-  font-size:31px;
-}
-
-.header p{
-  margin:5px 0;
-  color:#8c7898;
-}
-
-/* NAV */
-
-.nav{
-  display:flex;
-  gap:7px;
-  overflow-x:auto;
-  padding:8px 0 14px;
-  position:sticky;
-  top:0;
-  background:rgba(248,239,255,.94);
-  z-index:10;
-}
-
-.nav button{
-  min-width:75px;
-  padding:9px 10px;
-  border:0;
-  border-radius:15px;
-  background:white;
-  color:#765783;
-  font-size:12px;
-  box-shadow:0 3px 12px rgba(100,70,120,.08);
-}
-
-.nav button.active{
-  background:#a979c5;
-  color:white;
-}
-
-/* SECTIONS */
+/* =========================
+   GENERAL
+========================= */
 
 .section{
   display:none;
+  padding:15px;
+  animation:fade .25s ease;
 }
 
 .section.active{
   display:block;
 }
 
-/* CARDS */
-
-.card{
-  background:white;
-  border-radius:22px;
-  padding:18px;
-  margin:13px 0;
-  box-shadow:0 5px 22px rgba(100,70,120,.08);
+@keyframes fade{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
-.card h2{
-  margin-top:0;
-  font-size:20px;
+.top{
+  padding:28px 20px 18px;
+}
+
+.backTitle{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.pageTitle{
+  font-size:29px;
+  margin:5px 0;
+}
+
+.pageSub{
+  color:#777;
+  line-height:1.6;
+  margin-top:5px;
 }
 
 .small{
-  color:#8a7891;
-  font-size:14px;
-  line-height:1.6;
+  font-size:13px;
+  color:#777;
+  line-height:1.7;
 }
 
-/* PROGRESS */
-
-.progressBox{
-  background:white;
-  padding:18px;
-  border-radius:22px;
-  margin-bottom:15px;
-}
-
-.progressTop{
-  display:flex;
-  justify-content:space-between;
+button.primary{
+  border:0;
+  border-radius:15px;
+  padding:13px 18px;
+  width:100%;
   font-weight:bold;
-  margin-bottom:10px;
+  color:white;
+  margin-top:8px;
 }
 
-.progressBg{
-  height:12px;
-  background:#eee4f4;
+input,textarea,select{
+  width:100%;
+  border:1px solid #ddd;
+  background:white;
+  padding:13px;
+  border-radius:13px;
+  margin:5px 0;
+  font-size:15px;
+  color:#333;
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+/* =========================
+   HOME
+========================= */
+
+#home{
+  background:
+    radial-gradient(circle at 90% 5%,#e9dcff 0,transparent 30%),
+    radial-gradient(circle at 0 45%,#dff5ef 0,transparent 30%),
+    #faf9f5;
+  min-height:100vh;
+}
+
+.homeHero{
+  padding:35px 20px 25px;
+}
+
+.homeHero .symbol{
+  font-size:48px;
+}
+
+.homeHero h1{
+  font-size:38px;
+  margin:8px 0 2px;
+  letter-spacing:-1px;
+}
+
+.homeHero p{
+  color:#777;
+  margin:0;
+}
+
+.todayBox{
+  margin-top:20px;
+  background:#202020;
+  color:white;
+  border-radius:25px;
+  padding:22px;
+  box-shadow:0 12px 35px rgba(0,0,0,.14);
+}
+
+.todayBox .date{
+  color:#bbb;
+  font-size:13px;
+}
+
+.todayBox .focus{
+  font-size:24px;
+  font-weight:bold;
+  margin:10px 0;
+}
+
+.homeProgress{
+  height:8px;
+  background:#444;
   border-radius:20px;
   overflow:hidden;
 }
 
-.progressBar{
+.homeProgress div{
   height:100%;
-  width:0%;
-  background:linear-gradient(90deg,#a978c5,#d39bd5);
+  width:0;
+  background:#d7ff6f;
+  transition:.4s;
+}
+
+.homeStats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+
+.stat{
+  background:white;
   border-radius:20px;
-  transition:.3s;
+  padding:18px;
+  border:1px solid #eee;
 }
 
-/* INPUTS */
-
-input,textarea,select{
-  width:100%;
-  border:1px solid #eadff0;
-  border-radius:14px;
-  padding:13px;
-  margin:6px 0;
-  background:#fffafd;
-  color:#40324d;
-  font-size:15px;
+.stat strong{
+  display:block;
+  font-size:25px;
+  margin-top:5px;
 }
 
-textarea{
-  min-height:90px;
-  resize:vertical;
-}
-
-/* BUTTONS */
-
-.mainBtn{
-  width:100%;
-  border:0;
-  padding:13px;
-  border-radius:15px;
-  background:#a979c5;
-  color:white;
-  font-size:15px;
+.homeQuote{
+  margin-top:15px;
+  padding:25px 20px;
+  border-radius:24px;
+  background:#efe9ff;
+  color:#55446d;
+  line-height:1.8;
   font-weight:bold;
-  margin-top:8px;
 }
 
-.secondaryBtn{
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottomNav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(600px,100%);
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(15px);
+  border-top:1px solid #e8e8e8;
+  display:flex;
+  justify-content:space-around;
+  padding:9px 4px calc(9px + env(safe-area-inset-bottom));
+  z-index:100;
+}
+
+.bottomNav button{
   border:0;
-  padding:9px 13px;
-  border-radius:12px;
-  background:#f1e5f5;
-  color:#765783;
+  background:none;
+  color:#888;
+  font-size:11px;
+  min-width:55px;
 }
 
-/* TASK */
+.bottomNav button span{
+  display:block;
+  font-size:21px;
+  margin-bottom:3px;
+}
 
-.task{
+.bottomNav button.active{
+  color:#222;
+  font-weight:bold;
+}
+
+/* =========================
+   TASKS
+========================= */
+
+#tasks{
+  background:#f4f8ff;
+  min-height:100vh;
+}
+
+.taskAdd{
+  background:white;
+  padding:18px;
+  border-radius:20px;
+  margin-bottom:14px;
+}
+
+.taskItem{
   display:flex;
   align-items:center;
   gap:10px;
-  padding:13px 5px;
-  border-bottom:1px solid #f0e8f2;
+  background:white;
+  padding:15px;
+  border-radius:16px;
+  margin:8px 0;
+  box-shadow:0 3px 12px rgba(0,0,0,.04);
 }
 
-.task:last-child{
-  border-bottom:0;
-}
-
-.task input[type="checkbox"]{
-  width:21px;
-  height:21px;
+.taskItem input{
+  width:22px;
+  height:22px;
   margin:0;
-  accent-color:#a979c5;
+  accent-color:#315f9d;
 }
 
-.task.done span{
+.taskItem.done .taskText{
   text-decoration:line-through;
   color:#aaa;
 }
 
+.taskText{
+  flex:1;
+}
+
 .delete{
-  margin-right:auto;
   border:0;
   background:none;
-  color:#c38aaa;
-  font-size:17px;
+  color:#aaa;
+  font-size:18px;
 }
 
-/* HABITS */
+/* =========================
+   HABITS
+========================= */
 
-.habit{
+#habits{
+  background:#f5f0e7;
+  min-height:100vh;
+}
+
+.habitIntro{
+  background:#1e2924;
+  color:white;
+  border-radius:25px;
+  padding:23px;
+  margin-bottom:15px;
+}
+
+.habitIntro h2{
+  margin:0 0 8px;
+  font-size:25px;
+}
+
+.habitIntro p{
+  color:#c9d4cd;
+  line-height:1.7;
+  margin:0;
+}
+
+.habitAdd{
+  background:#fffdf8;
+  padding:16px;
+  border-radius:20px;
+  margin-bottom:15px;
+}
+
+.habitAddRow{
+  display:grid;
+  grid-template-columns:1fr 100px;
+  gap:7px;
+}
+
+.habitAdd button{
+  border:0;
+  border-radius:13px;
+  background:#283a31;
+  color:white;
+  font-weight:bold;
+}
+
+.tableWrap{
+  overflow-x:auto;
+  background:#fffdf8;
+  border-radius:22px;
+  box-shadow:0 7px 25px rgba(60,50,30,.08);
+  direction:ltr;
+}
+
+.habitTable{
+  border-collapse:collapse;
+  min-width:720px;
+  width:100%;
+  direction:ltr;
+}
+
+.habitTable th{
+  background:#283a31;
+  color:white;
+  padding:10px 7px;
+  font-size:11px;
+  position:sticky;
+  top:0;
+}
+
+.habitTable th:first-child,
+.habitTable td:first-child{
+  position:sticky;
+  right:0;
+  z-index:2;
+}
+
+.habitTable th:first-child{
+  background:#283a31;
+}
+
+.habitTable td{
+  border-bottom:1px solid #e9e2d7;
+  border-left:1px solid #eee8de;
+  padding:8px 5px;
+  text-align:center;
+  height:54px;
+  background:#fffdf8;
+}
+
+.habitTable td:first-child{
+  min-width:230px;
+  text-align:right;
+  border-left:0;
+}
+
+.habitName{
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  padding:13px 4px;
-  border-bottom:1px solid #f0e8f2;
+  gap:7px;
 }
 
-.habitCheck{
-  width:27px !important;
-  height:27px;
-  accent-color:#a979c5;
+.habitName input{
+  margin:0;
+  border:0;
+  background:transparent;
+  padding:7px;
+  font-weight:bold;
+  width:150px;
 }
 
-/* GOALS / PROBLEMS */
+.timeInput{
+  width:78px !important;
+  margin:0 !important;
+  padding:7px !important;
+  border:1px solid #e4ded3 !important;
+  font-size:12px !important;
+}
 
-.item{
-  background:#fcf8fd;
-  border-radius:17px;
+.dayCell{
+  width:55px;
+  min-width:55px;
+  height:48px;
+  cursor:pointer;
+  font-size:22px;
+  user-select:none;
+}
+
+.dayCell.emptyMark{
+  color:#ddd;
+}
+
+.dayCell.doneMark{
+  color:#2c7654;
+  background:#edf7ef;
+}
+
+.dayCell.failMark{
+  color:#c47b73;
+  background:#fff1ef;
+}
+
+.habitDelete{
+  border:0;
+  background:none;
+  color:#c99b91;
+  font-size:15px;
+}
+
+.habitFooter{
   padding:15px;
-  margin:10px 0;
-}
-
-.item h3{
-  margin:0 0 7px;
-}
-
-/* QUOTE */
-
-.quote{
-  text-align:center;
-  padding:20px 10px;
-  color:#806d8a;
-  font-style:italic;
+  background:#283a31;
+  color:white;
+  border-radius:0 0 22px 22px;
+  font-size:13px;
   line-height:1.7;
 }
 
-/* EMPTY */
-
-.empty{
-  text-align:center;
-  padding:25px;
-  color:#9b8aa2;
+.legend{
+  display:flex;
+  gap:15px;
+  margin:13px 2px;
+  font-size:12px;
+  color:#777;
 }
 
-/* MOBILE */
+/* =========================
+   APPOINTMENTS
+========================= */
 
-@media(max-width:380px){
-  .nav button{
-    min-width:68px;
-    font-size:11px;
+#appointments{
+  background:#eef8f7;
+  min-height:100vh;
+}
+
+.calendarHead{
+  background:#17665f;
+  color:white;
+  border-radius:27px;
+  padding:25px;
+  margin-bottom:15px;
+}
+
+.calendarHead h2{
+  margin:0;
+  font-size:27px;
+}
+
+.appointmentForm{
+  background:white;
+  padding:18px;
+  border-radius:20px;
+}
+
+.appointment{
+  background:white;
+  margin:10px 0;
+  padding:16px;
+  border-right:5px solid #17665f;
+  border-radius:15px;
+}
+
+.appointment.done{
+  opacity:.55;
+}
+
+/* =========================
+   GOALS
+========================= */
+
+#goals{
+  background:#fff7df;
+  min-height:100vh;
+}
+
+.goalHero{
+  background:#6b4a20;
+  color:white;
+  border-radius:27px;
+  padding:25px;
+  margin-bottom:15px;
+}
+
+.goalHero p{
+  color:#eadcc5;
+  line-height:1.7;
+}
+
+.goalForm{
+  background:#fffdf7;
+  border:1px solid #eee0c1;
+  padding:18px;
+  border-radius:20px;
+}
+
+.goal{
+  background:#fffdf7;
+  border:1px solid #eadfc8;
+  border-radius:20px;
+  padding:17px;
+  margin:12px 0;
+}
+
+.goalTitle{
+  font-size:19px;
+  font-weight:bold;
+}
+
+.goalStep{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 0;
+  border-bottom:1px solid #f0eadf;
+}
+
+.goalStep input{
+  width:20px;
+  margin:0;
+  accent-color:#a76b23;
+}
+
+.goalStep.done span{
+  text-decoration:line-through;
+  color:#aaa;
+}
+
+/* =========================
+   PROBLEMS
+========================= */
+
+#problems{
+  background:#edf0f4;
+  min-height:100vh;
+}
+
+.problemHero{
+  background:#29343f;
+  color:white;
+  border-radius:27px;
+  padding:25px;
+  margin-bottom:15px;
+}
+
+.problemHero p{
+  color:#c8d0d7;
+  line-height:1.7;
+}
+
+.problemForm{
+  background:white;
+  padding:18px;
+  border-radius:20px;
+}
+
+.problem{
+  background:white;
+  border-radius:20px;
+  padding:18px;
+  margin:12px 0;
+  border-top:4px solid #647384;
+}
+
+.problem h3{
+  margin-top:0;
+}
+
+.problemBlock{
+  background:#f5f6f7;
+  padding:12px;
+  border-radius:13px;
+  margin-top:8px;
+  line-height:1.7;
+  font-size:14px;
+}
+
+/* =========================
+   DREAMS
+========================= */
+
+#dreams{
+  background:
+    radial-gradient(circle at 20% 15%,#d7f0ff 0,transparent 25%),
+    radial-gradient(circle at 90% 65%,#eadbff 0,transparent 30%),
+    #f6f3ff;
+  min-height:100vh;
+}
+
+.dreamHero{
+  padding:20px 5px;
+}
+
+.dreamHero .moon{
+  font-size:48px;
+}
+
+.dreamHero h2{
+  font-size:31px;
+  margin:8px 0;
+}
+
+.dreamBox{
+  background:rgba(255,255,255,.8);
+  backdrop-filter:blur(10px);
+  border:1px solid white;
+  border-radius:27px;
+  padding:20px;
+}
+
+.dreamBox textarea{
+  min-height:230px;
+  background:rgba(255,255,255,.8);
+}
+
+/* =========================
+   FREEDOM
+========================= */
+
+#freedom{
+  background:#f4fbf5;
+  min-height:100vh;
+}
+
+.freedomHero{
+  text-align:center;
+  padding:30px 15px;
+}
+
+.freedomHero .bird{
+  font-size:60px;
+}
+
+.freedomHero h2{
+  font-size:30px;
+  margin:8px 0;
+}
+
+.freedomCircle{
+  background:#173d2b;
+  color:white;
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  margin:20px auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:30px;
+  line-height:1.7;
+  box-shadow:0 15px 35px rgba(23,61,43,.18);
+}
+
+.freedomPrinciple{
+  background:white;
+  padding:18px;
+  border-radius:20px;
+  margin:10px 0;
+  border-right:4px solid #4d966c;
+}
+
+.freedomPrinciple strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:400px){
+
+  .pageTitle{
+    font-size:25px;
+  }
+
+  .homeHero h1{
+    font-size:34px;
+  }
+
+  .habitAddRow{
+    grid-template-columns:1fr 85px;
+  }
+
+  .habitTable{
+    min-width:690px;
   }
 }
+
 </style>
 </head>
 
@@ -276,197 +735,375 @@ textarea{
 
 <div class="app">
 
-<header class="header">
-  <div class="logo">🌷</div>
-  <h1>حياتي 💜</h1>
-  <p>نبني حياتي، خطوة بخطوة.</p>
-</header>
 
-<nav class="nav">
-  <button class="active" onclick="showSection('home',this)">🏠 الرئيسية</button>
-  <button onclick="showSection('tasks',this)">✅ مهامي</button>
-  <button onclick="showSection('habits',this)">🌷 عاداتي</button>
-  <button onclick="showSection('appointments',this)">📅 مواعيدي</button>
-  <button onclick="showSection('goals',this)">🎯 أهدافي</button>
-  <button onclick="showSection('problems',this)">🧩 مشاكلي</button>
-  <button onclick="showSection('dreams',this)">✨ أحلامي</button>
-</nav>
-
-
-<!-- HOME -->
+<!-- =========================
+HOME
+========================= -->
 
 <section id="home" class="section active">
 
-  <div class="progressBox">
-    <div class="progressTop">
-      <span>تقدمك اليوم 🌷</span>
-      <span id="percent">0%</span>
+  <div class="homeHero">
+
+    <div class="symbol">🕊️</div>
+
+    <h1>حياتي</h1>
+
+    <p>
+      الحرية التي أبنيها بانضباطي.
+    </p>
+
+    <div class="todayBox">
+
+      <div class="date" id="todayDate"></div>
+
+      <div class="focus">
+        ماذا سأفعل اليوم لأقترب من الحياة التي أريدها؟
+      </div>
+
+      <div class="homeProgress">
+        <div id="homeProgress"></div>
+      </div>
+
+      <div style="margin-top:10px;font-size:13px;color:#bbb">
+        إنجاز اليوم:
+        <strong id="homePercent">0%</strong>
+      </div>
+
     </div>
 
-    <div class="progressBg">
-      <div class="progressBar" id="progressBar"></div>
+    <div class="homeStats">
+
+      <div class="stat">
+        📝 المهام
+        <strong id="statTasks">0</strong>
+      </div>
+
+      <div class="stat">
+        🌱 العادات
+        <strong id="statHabits">0</strong>
+      </div>
+
+      <div class="stat">
+        🎯 الأهداف
+        <strong id="statGoals">0</strong>
+      </div>
+
+      <div class="stat">
+        📅 المواعيد
+        <strong id="statAppointments">0</strong>
+      </div>
+
     </div>
 
-    <p class="small" id="progressText">
-      كل خطوة صغيرة محسوبة 💜
-    </p>
-  </div>
+    <div class="homeQuote">
+      لا أبحث عن حياة بلا مسؤوليات.
+      <br>
+      أبني نفسي حتى أستطيع أن أعيش بحرية. 🕊️
+    </div>
 
-  <div class="card">
-    <h2>🌸 أهلاً بكِ في حياتك</h2>
-    <p class="small">
-      هذا المكان لكِ أنتِ.  
-      رتبي يومك، تابعي عاداتك، اكتبي أهدافك،
-      وحولي الأشياء التي تبدو كبيرة إلى خطوات صغيرة.
-    </p>
-  </div>
-
-  <div class="card">
-    <h2>☀️ اليوم</h2>
-    <div id="homeTasks"></div>
-  </div>
-
-  <div class="card">
-    <h2>💜 تذكير اليوم</h2>
-    <p class="quote">
-      لا تحتاجين أن تغيري حياتك كلها اليوم.<br>
-      فقط افعلي الشيء الصغير الذي يقربك منها.
-    </p>
   </div>
 
 </section>
 
 
-<!-- TASKS -->
+<!-- =========================
+TASKS
+========================= -->
 
 <section id="tasks" class="section">
 
-  <div class="card">
-    <h2>✅ مهامي اليومية</h2>
+  <div class="top">
 
-    <input id="taskInput" placeholder="اكتبي شيئاً تريدين إنجازه...">
+    <div class="backTitle">
+      <div>
+        <div class="pageTitle">⚡ مهامي</div>
+        <div class="pageSub">
+          الأشياء التي يجب أن تحدث اليوم.
+        </div>
+      </div>
+    </div>
 
-    <button class="mainBtn" onclick="addTask()">
+  </div>
+
+  <div class="taskAdd">
+
+    <input id="taskInput"
+      placeholder="اكتبي المهمة التي تريدين إنجازها...">
+
+    <button class="primary"
+      style="background:#315f9d"
+      onclick="addTask()">
       ＋ إضافة مهمة
     </button>
 
-    <div id="taskList"></div>
   </div>
+
+  <div id="taskList"></div>
 
 </section>
 
 
-<!-- HABITS -->
+<!-- =========================
+HABITS
+========================= -->
 
 <section id="habits" class="section">
 
-  <div class="card">
-    <h2>🌷 عاداتي اليومية</h2>
+  <div class="top">
 
-    <input id="habitInput" placeholder="مثلاً: شرب الماء، الدراسة، المشي...">
+    <div class="pageTitle">
+      🌱 مختبر الانضباط
+    </div>
 
-    <button class="mainBtn" onclick="addHabit()">
-      ＋ إضافة عادة
-    </button>
+    <div class="pageSub">
+      العادة الصغيرة التي تكررينها تصبح جزءاً من حياتك.
+    </div>
 
-    <div id="habitList"></div>
+  </div>
+
+  <div class="habitIntro">
+
+    <h2>15 عادة · يوم وراء يوم</h2>
+
+    <p>
+      لا نريد الكمال.
+      نريد أن نرى الحقيقة:
+      هل فعلتِ الشيء أم لا؟
+      اضغطي على خانة اليوم لتسجيل النتيجة.
+    </p>
+
+  </div>
+
+  <div class="habitAdd">
+
+    <div style="font-weight:bold;margin-bottom:8px">
+      أضيفي عادة جديدة
+    </div>
+
+    <div class="habitAddRow">
+
+      <input id="habitInput"
+        placeholder="مثلاً: الاستيقاظ مبكراً">
+
+      <button onclick="addHabit()">
+        ＋ إضافة
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="legend">
+    <span>⚪ لم أسجل</span>
+    <span>✅ أنجزت</span>
+    <span>✕ لم أنجز</span>
+  </div>
+
+  <div class="tableWrap">
+
+    <table class="habitTable">
+
+      <thead>
+        <tr id="habitHeader"></tr>
+      </thead>
+
+      <tbody id="habitTableBody"></tbody>
+
+    </table>
+
+    <div class="habitFooter">
+      💡 الانضباط ليس أن تكوني مثالية.
+      الانضباط أن تعودي إلى الطريق كلما ابتعدتِ عنه.
+    </div>
+
   </div>
 
 </section>
 
 
-<!-- APPOINTMENTS -->
+<!-- =========================
+APPOINTMENTS
+========================= -->
 
 <section id="appointments" class="section">
 
-  <div class="card">
-    <h2>📅 مواعيدي</h2>
+  <div class="top">
 
-    <input id="appointmentInput" placeholder="ما الذي يجب القيام به؟">
+    <div class="pageTitle">📅 مواعيدي</div>
+
+    <div class="pageSub">
+      الأشياء التي لها وقت وتاريخ محدد.
+    </div>
+
+  </div>
+
+  <div class="calendarHead">
+
+    <h2>أبقي حياتك في موعدها.</h2>
+
+    <p>
+      موعد، تسجيل، امتحان، عمل، سفر، اتصال...
+      اكتبيه حتى لا يبقى في رأسك.
+    </p>
+
+  </div>
+
+  <div class="appointmentForm">
+
+    <input id="appointmentInput"
+      placeholder="ما الذي لديك؟">
 
     <input id="appointmentDate" type="date">
 
-    <button class="mainBtn" onclick="addAppointment()">
-      ＋ إضافة موعد
+    <input id="appointmentTime" type="time">
+
+    <button class="primary"
+      style="background:#17665f"
+      onclick="addAppointment()">
+      ＋ إضافة إلى المواعيد
     </button>
 
-    <div id="appointmentList"></div>
   </div>
+
+  <div id="appointmentList"></div>
 
 </section>
 
 
-<!-- GOALS -->
+<!-- =========================
+GOALS
+========================= -->
 
 <section id="goals" class="section">
 
-  <div class="card">
+  <div class="top">
 
-    <h2>🎯 أهدافي</h2>
+    <div class="pageTitle">🎯 أهدافي</div>
 
-    <input id="goalTitle" placeholder="ما هو الهدف؟">
-
-    <textarea id="goalSteps"
-      placeholder="اكتبي الخطوات التي ستوصلك إليه، كل خطوة في سطر..."></textarea>
-
-    <button class="mainBtn" onclick="addGoal()">
-      ＋ إضافة هدف
-    </button>
-
-    <div id="goalList"></div>
+    <div class="pageSub">
+      الحلم يصبح هدفاً عندما نعطيه خطوات.
+    </div>
 
   </div>
+
+  <div class="goalHero">
+
+    <h2>من أين أريد أن أصل؟</h2>
+
+    <p>
+      لا تكتبي فقط "أريد أن أنجح".
+      اكتبي ماذا تريدين، ثم قسمي الطريق.
+    </p>
+
+  </div>
+
+  <div class="goalForm">
+
+    <input id="goalTitle"
+      placeholder="اسم الهدف">
+
+    <textarea id="goalSteps"
+      placeholder="اكتبي خطوات الهدف، كل خطوة في سطر مستقل..."></textarea>
+
+    <button class="primary"
+      style="background:#9a6426"
+      onclick="addGoal()">
+      ＋ بناء الهدف
+    </button>
+
+  </div>
+
+  <div id="goalList"></div>
 
 </section>
 
 
-<!-- PROBLEMS -->
+<!-- =========================
+PROBLEMS
+========================= -->
 
 <section id="problems" class="section">
 
-  <div class="card">
+  <div class="top">
 
-    <h2>🧩 مشاكلي</h2>
+    <div class="pageTitle">🧩 غرفة الحلول</div>
 
-    <p class="small">
-      اكتبي المشكلة كما هي، ثم حاولي تحويلها إلى شيء يمكن التعامل معه.
+    <div class="pageSub">
+      لا نترك المشكلة تدور في الرأس.
+      نكتبها، نفهمها، ونضع لها خطوة.
+    </div>
+
+  </div>
+
+  <div class="problemHero">
+
+    <h2>المشكلة ليست خطة.</h2>
+
+    <p>
+      هنا نحول الشيء الذي يزعجك إلى شيء يمكن العمل عليه.
     </p>
 
-    <input id="problemTitle" placeholder="ما المشكلة؟">
+  </div>
+
+  <div class="problemForm">
+
+    <input id="problemTitle"
+      placeholder="ما المشكلة؟">
 
     <textarea id="problemCause"
-      placeholder="ما الذي يجعل هذه المشكلة مستمرة؟"></textarea>
+      placeholder="ما الذي يجعلها مستمرة؟"></textarea>
 
     <textarea id="problemSolution"
       placeholder="ما الحل الذي أستطيع القيام به؟"></textarea>
 
     <textarea id="problemSteps"
-      placeholder="ما الخطوات العملية؟"></textarea>
+      placeholder="ما أول خطوة؟ وما الخطوات التي بعدها؟"></textarea>
 
-    <button class="mainBtn" onclick="addProblem()">
-      ＋ حفظ المشكلة وخطتها
+    <button class="primary"
+      style="background:#536578"
+      onclick="addProblem()">
+      🧩 حفظ خطة الحل
     </button>
 
-    <div id="problemList"></div>
-
   </div>
+
+  <div id="problemList"></div>
 
 </section>
 
 
-<!-- DREAMS -->
+<!-- =========================
+DREAMS
+========================= -->
 
 <section id="dreams" class="section">
 
-  <div class="card">
+  <div class="top dreamHero">
 
-    <h2>✨ أحلامي</h2>
+    <div class="moon">🌙</div>
+
+    <h2>أحلامي</h2>
+
+    <div class="pageSub">
+      المكان الذي لا أضع فيه حدوداً لما أريد أن أعيشه.
+    </div>
+
+  </div>
+
+  <div class="dreamBox">
 
     <textarea id="dreamInput"
-      placeholder="اكتبي هنا الحياة التي تتمنين أن تعيشيها..."></textarea>
+      placeholder="اكتبي حياتك التي تتمنينها...
+أين تريدين أن تعيشي؟
+ماذا تريدين أن تتعلمي؟
+أين تريدين السفر؟
+كيف تريدين أن يكون يومك؟
+من تريدين أن تصبحي؟"></textarea>
 
-    <button class="mainBtn" onclick="saveDream()">
-      💜 حفظ أحلامي
+    <button class="primary"
+      style="background:#6e57a1"
+      onclick="saveDream()">
+      ✨ حفظ رؤيتي
     </button>
 
     <p id="dreamSaved" class="small"></p>
@@ -476,9 +1113,90 @@ textarea{
 </section>
 
 
-<div class="quote">
-  “حياتي لا تحتاج أن تكون مثالية، أحتاج فقط أن أستمر في بنائها.” 🌷
-</div>
+<!-- =========================
+FREEDOM
+========================= -->
+
+<section id="freedom" class="section">
+
+  <div class="freedomHero">
+
+    <div class="bird">🕊️</div>
+
+    <h2>الحرية</h2>
+
+    <p class="pageSub">
+      ليست الهروب من المسؤولية.
+      هي القدرة على قيادة نفسك.
+    </p>
+
+    <div class="freedomCircle">
+      أنا أنظم حياتي<br>
+      حتى لا تصبح حياتي هي التي تتحكم بي.
+    </div>
+
+  </div>
+
+  <div class="freedomPrinciple">
+    <strong>⏰ الانضباط</strong>
+    أفعل ما يجب فعله حتى عندما لا أشعر بالرغبة.
+  </div>
+
+  <div class="freedomPrinciple">
+    <strong>🌱 المسؤولية</strong>
+    ما أستطيع تغييره يبدأ مني.
+  </div>
+
+  <div class="freedomPrinciple">
+    <strong>🕊️ الحرية</strong>
+    كل عادة صحيحة تعطيني مساحة أكبر لأعيش الحياة التي أريدها.
+  </div>
+
+  <div class="freedomPrinciple">
+    <strong>🌸 الراحة</strong>
+    الراحة الحقيقية تأتي عندما أعرف أنني أستطيع الاعتماد على نفسي.
+  </div>
+
+</section>
+
+
+<!-- =========================
+BOTTOM NAV
+========================= -->
+
+<nav class="bottomNav">
+
+  <button class="active"
+    onclick="showSection('home',this)">
+    <span>⌂</span>
+    الرئيسية
+  </button>
+
+  <button
+    onclick="showSection('tasks',this)">
+    <span>✓</span>
+    المهام
+  </button>
+
+  <button
+    onclick="showSection('habits',this)">
+    <span>🌱</span>
+    الانضباط
+  </button>
+
+  <button
+    onclick="showSection('goals',this)">
+    <span>🎯</span>
+    الأهداف
+  </button>
+
+  <button
+    onclick="showSection('freedom',this)">
+    <span>🕊️</span>
+    الحرية
+  </button>
+
+</nav>
 
 </div>
 
@@ -489,11 +1207,20 @@ textarea{
    DATA
 ========================= */
 
-let tasks = JSON.parse(localStorage.getItem("lifeTasks") || "[]");
-let habits = JSON.parse(localStorage.getItem("lifeHabits") || "[]");
-let appointments = JSON.parse(localStorage.getItem("lifeAppointments") || "[]");
-let goals = JSON.parse(localStorage.getItem("lifeGoals") || "[]");
-let problems = JSON.parse(localStorage.getItem("lifeProblems") || "[]");
+let tasks =
+JSON.parse(localStorage.getItem("myLifeTasks") || "[]");
+
+let habits =
+JSON.parse(localStorage.getItem("myLifeHabits") || "[]");
+
+let appointments =
+JSON.parse(localStorage.getItem("myLifeAppointments") || "[]");
+
+let goals =
+JSON.parse(localStorage.getItem("myLifeGoals") || "[]");
+
+let problems =
+JSON.parse(localStorage.getItem("myLifeProblems") || "[]");
 
 
 /* =========================
@@ -503,19 +1230,101 @@ let problems = JSON.parse(localStorage.getItem("lifeProblems") || "[]");
 function showSection(id,button){
 
   document.querySelectorAll(".section")
-    .forEach(section => section.classList.remove("active"));
+  .forEach(s=>s.classList.remove("active"));
 
   document.getElementById(id).classList.add("active");
 
-  document.querySelectorAll(".nav button")
-    .forEach(btn => btn.classList.remove("active"));
+  document.querySelectorAll(".bottomNav button")
+  .forEach(b=>b.classList.remove("active"));
 
-  button.classList.add("active");
+  if(button) button.classList.add("active");
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+  window.scrollTo(0,0);
+
+  renderAll();
+
+}
+
+
+/* =========================
+   DATE
+========================= */
+
+function getDates(){
+
+  let dates=[];
+
+  for(let i=0;i<7;i++){
+
+    let d=new Date();
+
+    d.setDate(d.getDate()+i);
+
+    dates.push(d);
+
+  }
+
+  return dates;
+}
+
+
+function formatDate(date){
+
+  return String(date.getDate()).padStart(2,"0")
+    +"/"+
+    String(date.getMonth()+1).padStart(2,"0");
+
+}
+
+
+function dateKey(date){
+
+  return date.getFullYear()+"-"+
+    String(date.getMonth()+1).padStart(2,"0")+"-"+
+    String(date.getDate()).padStart(2,"0");
+
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+function updateHome(){
+
+  let today=new Date();
+
+  document.getElementById("todayDate").innerText=
+    today.toLocaleDateString("ar-MA",{
+      weekday:"long",
+      day:"numeric",
+      month:"long"
+    });
+
+  let total=tasks.length;
+  let done=tasks.filter(t=>t.done).length;
+
+  let percent=total?
+    Math.round(done/total*100):0;
+
+  document.getElementById("homeProgress").style.width=
+    percent+"%";
+
+  document.getElementById("homePercent").innerText=
+    percent+"%";
+
+  document.getElementById("statTasks").innerText=
+    tasks.length;
+
+  document.getElementById("statHabits").innerText=
+    habits.length;
+
+  document.getElementById("statGoals").innerText=
+    goals.length;
+
+  document.getElementById("statAppointments").innerText=
+    appointments.length;
+
 }
 
 
@@ -525,8 +1334,9 @@ function showSection(id,button){
 
 function addTask(){
 
-  const input=document.getElementById("taskInput");
-  const text=input.value.trim();
+  let input=document.getElementById("taskInput");
+
+  let text=input.value.trim();
 
   if(!text)return;
 
@@ -539,20 +1349,28 @@ function addTask(){
   input.value="";
 
   saveAll();
+
   renderTasks();
+
+  updateHome();
+
 }
 
 
 function toggleTask(id){
 
-  const task=tasks.find(t=>t.id===id);
+  let task=tasks.find(t=>t.id===id);
 
   if(task){
     task.done=!task.done;
   }
 
   saveAll();
+
   renderTasks();
+
+  updateHome();
+
 }
 
 
@@ -561,60 +1379,47 @@ function deleteTask(id){
   tasks=tasks.filter(t=>t.id!==id);
 
   saveAll();
+
   renderTasks();
+
+  updateHome();
+
 }
 
 
 function renderTasks(){
 
-  const list=document.getElementById("taskList");
-  const home=document.getElementById("homeTasks");
+  let list=document.getElementById("taskList");
 
-  if(tasks.length===0){
+  if(!tasks.length){
 
-    list.innerHTML='<div class="empty">ما عندك حتى مهمة بعد 🌷</div>';
-    home.innerHTML='<div class="empty">أضيفي أول مهمة لليوم 💜</div>';
+    list.innerHTML=
+    '<div style="text-align:center;padding:40px;color:#999">لا توجد مهام بعد 🌿</div>';
 
-    updateProgress();
     return;
   }
 
-  list.innerHTML=tasks.map(task=>`
+  list.innerHTML=tasks.map(t=>`
 
-    <div class="task ${task.done ? "done":""}">
+    <div class="taskItem ${t.done?"done":""}">
 
-      <input
-        type="checkbox"
-        ${task.done ? "checked":""}
-        onchange="toggleTask(${task.id})">
+      <input type="checkbox"
+        ${t.done?"checked":""}
+        onchange="toggleTask(${t.id})">
 
-      <span>${escapeHTML(task.text)}</span>
+      <div class="taskText">
+        ${escapeHTML(t.text)}
+      </div>
 
       <button class="delete"
-        onclick="deleteTask(${task.id})">×</button>
+        onclick="deleteTask(${t.id})">
+        ×
+      </button>
 
     </div>
 
   `).join("");
 
-  const firstTasks=tasks.slice(0,5);
-
-  home.innerHTML=firstTasks.map(task=>`
-
-    <div class="task ${task.done ? "done":""}">
-
-      <input
-        type="checkbox"
-        ${task.done ? "checked":""}
-        onchange="toggleTask(${task.id})">
-
-      <span>${escapeHTML(task.text)}</span>
-
-    </div>
-
-  `).join("");
-
-  updateProgress();
 }
 
 
@@ -624,34 +1429,82 @@ function renderTasks(){
 
 function addHabit(){
 
-  const input=document.getElementById("habitInput");
-  const text=input.value.trim();
+  let input=document.getElementById("habitInput");
+
+  let text=input.value.trim();
 
   if(!text)return;
 
   habits.push({
     id:Date.now(),
-    text:text,
-    done:false
+    name:text,
+    time:"",
+    days:{}
   });
 
   input.value="";
 
   saveAll();
+
   renderHabits();
+
+  updateHome();
+
 }
 
 
-function toggleHabit(id){
+function toggleHabitDay(id,key){
 
-  const habit=habits.find(h=>h.id===id);
+  let habit=habits.find(h=>h.id===id);
 
-  if(habit){
-    habit.done=!habit.done;
+  if(!habit)return;
+
+  let current=habit.days[key] || 0;
+
+  if(current===0){
+    habit.days[key]=1;
+  }
+  else if(current===1){
+    habit.days[key]=2;
+  }
+  else{
+    habit.days[key]=0;
   }
 
   saveAll();
+
   renderHabits();
+
+}
+
+
+function updateHabitName(id,value){
+
+  let habit=habits.find(h=>h.id===id);
+
+  if(habit){
+
+    habit.name=value;
+
+    saveAll();
+
+  }
+
+}
+
+
+function updateHabitTime(id,value){
+
+  let habit=habits.find(h=>h.id===id);
+
+  if(habit){
+
+    habit.time=value;
+
+    saveAll();
+
+  }
+
 }
 
 
@@ -660,37 +1513,113 @@ function deleteHabit(id){
   habits=habits.filter(h=>h.id!==id);
 
   saveAll();
+
   renderHabits();
+
+  updateHome();
+
 }
 
 
 function renderHabits(){
 
-  const list=document.getElementById("habitList");
+  let header=document.getElementById("habitHeader");
 
-  if(habits.length===0){
-    list.innerHTML='<div class="empty">أضيفي العادات التي تريدين بناءها 🌷</div>';
+  let body=document.getElementById("habitTableBody");
+
+  let dates=getDates();
+
+  header.innerHTML=`
+
+    <th style="min-width:230px">
+      الوقت · العادة
+    </th>
+
+    ${dates.map(d=>`
+      <th>
+        ${formatDate(d)}
+      </th>
+    `).join("")}
+
+  `;
+
+  if(!habits.length){
+
+    body.innerHTML=`
+
+      <tr>
+        <td colspan="8"
+          style="padding:45px;text-align:center;color:#999">
+          أضيفي أول عادة من الأعلى 🌱
+        </td>
+      </tr>
+
+    `;
+
     return;
+
   }
 
-  list.innerHTML=habits.map(habit=>`
+  body.innerHTML=habits.map(h=>`
 
-    <div class="habit">
+    <tr>
 
-      <span>${escapeHTML(habit.text)}</span>
+      <td>
 
-      <input
-        class="habitCheck"
-        type="checkbox"
-        ${habit.done ? "checked":""}
-        onchange="toggleHabit(${habit.id})">
+        <div class="habitName">
 
-      <button class="delete"
-        onclick="deleteHabit(${habit.id})">×</button>
+          <input
+            class="timeInput"
+            type="time"
+            value="${h.time||""}"
+            onchange="updateHabitTime(${h.id},this.value)">
 
-    </div>
+          <input
+            value="${escapeHTML(h.name)}"
+            placeholder="اكتبي العادة"
+            onchange="updateHabitName(${h.id},this.value)">
+
+          <button class="habitDelete"
+            onclick="deleteHabit(${h.id})">
+            ×
+          </button>
+
+        </div>
+
+      </td>
+
+      ${dates.map(d=>{
+
+        let key=dateKey(d);
+
+        let state=h.days[key]||0;
+
+        let symbol=
+          state===1?"✓":
+          state===2?"×":"•";
+
+        let cls=
+          state===1?"doneMark":
+          state===2?"failMark":"emptyMark";
+
+        return `
+
+          <td
+            class="dayCell ${cls}"
+            onclick="toggleHabitDay(${h.id},'${key}')">
+
+            ${symbol}
+
+          </td>
+
+        `;
+
+      }).join("")}
+
+    </tr>
 
   `).join("");
+
 }
 
 
@@ -700,8 +1629,14 @@ function renderHabits(){
 
 function addAppointment(){
 
-  const text=document.getElementById("appointmentInput").value.trim();
-  const date=document.getElementById("appointmentDate").value;
+  let text=
+    document.getElementById("appointmentInput").value.trim();
+
+  let date=
+    document.getElementById("appointmentDate").value;
+
+  let time=
+    document.getElementById("appointmentTime").value;
 
   if(!text || !date)return;
 
@@ -709,79 +1644,95 @@ function addAppointment(){
     id:Date.now(),
     text:text,
     date:date,
+    time:time,
     done:false
   });
 
   document.getElementById("appointmentInput").value="";
   document.getElementById("appointmentDate").value="";
+  document.getElementById("appointmentTime").value="";
 
   saveAll();
+
   renderAppointments();
+
+  updateHome();
+
 }
 
 
 function toggleAppointment(id){
 
-  const appointment=appointments.find(a=>a.id===id);
+  let a=appointments.find(x=>x.id===id);
 
-  if(appointment){
-    appointment.done=!appointment.done;
-  }
+  if(a)a.done=!a.done;
 
   saveAll();
+
   renderAppointments();
+
 }
 
 
 function deleteAppointment(id){
 
-  appointments=appointments.filter(a=>a.id!==id);
+  appointments=
+    appointments.filter(x=>x.id!==id);
 
   saveAll();
+
   renderAppointments();
+
+  updateHome();
+
 }
 
 
 function renderAppointments(){
 
-  const list=document.getElementById("appointmentList");
+  let list=document.getElementById("appointmentList");
 
-  if(appointments.length===0){
-    list.innerHTML='<div class="empty">لا توجد مواعيد مسجلة 📅</div>';
+  if(!appointments.length){
+
+    list.innerHTML=
+    '<div style="text-align:center;padding:40px;color:#888">لا توجد مواعيد 🌿</div>';
+
     return;
+
   }
 
-  appointments.sort((a,b)=>a.date.localeCompare(b.date));
+  let sorted=[...appointments].sort((a,b)=>
+    (a.date+a.time).localeCompare(b.date+b.time)
+  );
 
-  list.innerHTML=appointments.map(a=>`
+  list.innerHTML=sorted.map(a=>`
 
-    <div class="item">
+    <div class="appointment ${a.done?"done":""}">
 
-      <h3>📅 ${escapeHTML(a.text)}</h3>
+      <strong>📌 ${escapeHTML(a.text)}</strong>
 
-      <p class="small">
-        التاريخ: ${a.date}
-      </p>
+      <div class="small">
+        📅 ${a.date}
+        ${a.time? " · ⏰ "+a.time:""}
+      </div>
 
       <button
-        class="secondaryBtn"
+        style="border:0;background:#e4f2ef;color:#17665f;border-radius:10px;padding:8px 12px;margin-top:8px"
         onclick="toggleAppointment(${a.id})">
 
-        ${a.done ? "✅ تم الإنجاز" : "⭕ لم يتم بعد"}
+        ${a.done?"✓ تم":"تحديد كمنجز"}
 
       </button>
 
-      <button
-        class="delete"
+      <button class="delete"
         onclick="deleteAppointment(${a.id})">
-
         حذف
-
       </button>
 
     </div>
 
   `).join("");
+
 }
 
 
@@ -791,17 +1742,20 @@ function renderAppointments(){
 
 function addGoal(){
 
-  const title=document.getElementById("goalTitle").value.trim();
-  const stepsText=document.getElementById("goalSteps").value.trim();
+  let title=
+    document.getElementById("goalTitle").value.trim();
+
+  let stepsText=
+    document.getElementById("goalSteps").value.trim();
 
   if(!title)return;
 
-  const steps=stepsText
+  let steps=stepsText
     .split("\n")
-    .map(s=>s.trim())
+    .map(x=>x.trim())
     .filter(Boolean)
-    .map(text=>({
-      text:text,
+    .map(x=>({
+      text:x,
       done:false
     }));
 
@@ -815,20 +1769,26 @@ function addGoal(){
   document.getElementById("goalSteps").value="";
 
   saveAll();
+
   renderGoals();
+
+  updateHome();
+
 }
 
 
-function toggleGoalStep(goalId,index){
+function toggleGoalStep(id,index){
 
-  const goal=goals.find(g=>g.id===goalId);
+  let g=goals.find(x=>x.id===id);
 
-  if(goal && goal.steps[index]){
-    goal.steps[index].done=!goal.steps[index].done;
+  if(g && g.steps[index]){
+    g.steps[index].done=!g.steps[index].done;
   }
 
   saveAll();
+
   renderGoals();
+
 }
 
 
@@ -837,57 +1797,81 @@ function deleteGoal(id){
   goals=goals.filter(g=>g.id!==id);
 
   saveAll();
+
   renderGoals();
+
+  updateHome();
+
 }
 
 
 function renderGoals(){
 
-  const list=document.getElementById("goalList");
+  let list=document.getElementById("goalList");
 
-  if(goals.length===0){
-    list.innerHTML='<div class="empty">اكتبي أول هدف كبير تريدين الوصول إليه 🎯</div>';
+  if(!goals.length){
+
+    list.innerHTML=
+    '<div style="text-align:center;padding:40px;color:#999">أول هدف ينتظر أن تكتبيه 🎯</div>';
+
     return;
+
   }
 
-  list.innerHTML=goals.map(goal=>`
+  list.innerHTML=goals.map(g=>{
 
-    <div class="item">
+    let total=g.steps.length;
 
-      <h3>🎯 ${escapeHTML(goal.title)}</h3>
+    let done=g.steps.filter(s=>s.done).length;
 
-      ${
-        goal.steps.length
-        ?
-        goal.steps.map((step,index)=>`
+    let percent=total?
+      Math.round(done/total*100):0;
 
-          <div class="task ${step.done ? "done":""}">
+    return `
 
-            <input
-              type="checkbox"
-              ${step.done ? "checked":""}
-              onchange="toggleGoalStep(${goal.id},${index})">
+      <div class="goal">
 
-            <span>${escapeHTML(step.text)}</span>
+        <div class="goalTitle">
+          🎯 ${escapeHTML(g.title)}
+        </div>
 
-          </div>
+        <div class="small">
+          ${done}/${total} خطوات · ${percent}%
+        </div>
 
-        `).join("")
-        :
-        '<p class="small">لم تضيفي خطوات بعد.</p>'
-      }
+        <div style="height:7px;background:#eee5d5;border-radius:10px;margin:10px 0">
+          <div style="width:${percent}%;height:100%;background:#a76b23;border-radius:10px"></div>
+        </div>
 
-      <button
-        class="delete"
-        onclick="deleteGoal(${goal.id})">
+        ${
+          g.steps.map((s,i)=>`
 
-        حذف الهدف
+            <div class="goalStep ${s.done?"done":""}">
 
-      </button>
+              <input type="checkbox"
+                ${s.done?"checked":""}
+                onchange="toggleGoalStep(${g.id},${i})">
 
-    </div>
+              <span>
+                ${escapeHTML(s.text)}
+              </span>
 
-  `).join("");
+            </div>
+
+          `).join("")
+        }
+
+        <button class="delete"
+          onclick="deleteGoal(${g.id})">
+          حذف الهدف
+        </button>
+
+      </div>
+
+    `;
+
+  }).join("");
+
 }
 
 
@@ -897,19 +1881,26 @@ function renderGoals(){
 
 function addProblem(){
 
-  const title=document.getElementById("problemTitle").value.trim();
-  const cause=document.getElementById("problemCause").value.trim();
-  const solution=document.getElementById("problemSolution").value.trim();
-  const steps=document.getElementById("problemSteps").value.trim();
+  let title=
+    document.getElementById("problemTitle").value.trim();
 
   if(!title)return;
 
   problems.push({
+
     id:Date.now(),
+
     title:title,
-    cause:cause,
-    solution:solution,
-    steps:steps
+
+    cause:
+      document.getElementById("problemCause").value.trim(),
+
+    solution:
+      document.getElementById("problemSolution").value.trim(),
+
+    steps:
+      document.getElementById("problemSteps").value.trim()
+
   });
 
   document.getElementById("problemTitle").value="";
@@ -918,7 +1909,9 @@ function addProblem(){
   document.getElementById("problemSteps").value="";
 
   saveAll();
+
   renderProblems();
+
 }
 
 
@@ -927,48 +1920,57 @@ function deleteProblem(id){
   problems=problems.filter(p=>p.id!==id);
 
   saveAll();
+
   renderProblems();
+
 }
 
 
 function renderProblems(){
 
-  const list=document.getElementById("problemList");
+  let list=document.getElementById("problemList");
 
-  if(problems.length===0){
+  if(!problems.length){
 
     list.innerHTML=
-      '<div class="empty">هنا غادي نفهمو المشاكل ونحوّلوها لخطط عملية 🧩</div>';
+    '<div style="text-align:center;padding:40px;color:#888">هنا غادي نخرجو المشاكل من رأسك ونحطوها قدامنا باش نحلّوها 🧩</div>';
 
     return;
+
   }
 
   list.innerHTML=problems.map(p=>`
 
-    <div class="item">
+    <div class="problem">
 
-      <h3>🧩 ${escapeHTML(p.title)}</h3>
+      <h3>
+        🧩 ${escapeHTML(p.title)}
+      </h3>
 
-      <p><strong>السبب:</strong><br>
-      ${escapeHTML(p.cause || "لم تكتبي بعد")}</p>
+      <div class="problemBlock">
+        <strong>لماذا يحدث؟</strong><br>
+        ${escapeHTML(p.cause||"لم تكتبي بعد")}
+      </div>
 
-      <p><strong>الحل:</strong><br>
-      ${escapeHTML(p.solution || "لم تكتبي بعد")}</p>
+      <div class="problemBlock">
+        <strong>ما الحل؟</strong><br>
+        ${escapeHTML(p.solution||"لم تكتبي بعد")}
+      </div>
 
-      <p><strong>الخطوات:</strong><br>
-      ${escapeHTML(p.steps || "لم تكتبي بعد")}</p>
+      <div class="problemBlock">
+        <strong>ماذا سأفعل؟</strong><br>
+        ${escapeHTML(p.steps||"لم تكتبي بعد")}
+      </div>
 
-      <button
-        class="delete"
+      <button class="delete"
         onclick="deleteProblem(${p.id})">
-
         حذف
-
       </button>
 
     </div>
 
   `).join("");
+
 }
 
 
@@ -978,75 +1980,58 @@ function renderProblems(){
 
 function saveDream(){
 
-  const dream=document.getElementById("dreamInput").value;
+  let value=
+    document.getElementById("dreamInput").value;
 
-  localStorage.setItem("lifeDreams",dream);
+  localStorage.setItem(
+    "myLifeDreams",
+    value
+  );
 
   document.getElementById("dreamSaved").innerText=
-    "تم حفظ أحلامك 💜";
+    "تم حفظ رؤيتك ✨";
 
 }
 
 
 function loadDream(){
 
-  const dream=localStorage.getItem("lifeDreams") || "";
-
-  document.getElementById("dreamInput").value=dream;
+  document.getElementById("dreamInput").value=
+    localStorage.getItem("myLifeDreams")||"";
 
 }
 
 
 /* =========================
-   PROGRESS
-========================= */
-
-function updateProgress(){
-
-  const total=tasks.length+habits.length;
-
-  const completed=
-    tasks.filter(t=>t.done).length+
-    habits.filter(h=>h.done).length;
-
-  let percent=0;
-
-  if(total>0){
-    percent=Math.round((completed/total)*100);
-  }
-
-  document.getElementById("percent").innerText=percent+"%";
-
-  document.getElementById("progressBar").style.width=
-    percent+"%";
-
-  let text="كل خطوة صغيرة محسوبة 💜";
-
-  if(percent===100 && total>0){
-    text="أنجزتِ كل شيء! فخورة بكِ 🌷✨";
-  }
-  else if(percent>=70){
-    text="ممتاز، كملي بنفس الهدوء 💜";
-  }
-  else if(percent>=40){
-    text="أنتِ تتحركين للأمام 🌸";
-  }
-
-  document.getElementById("progressText").innerText=text;
-}
-
-
-/* =========================
-   SAVE
+   STORAGE
 ========================= */
 
 function saveAll(){
 
-  localStorage.setItem("lifeTasks",JSON.stringify(tasks));
-  localStorage.setItem("lifeHabits",JSON.stringify(habits));
-  localStorage.setItem("lifeAppointments",JSON.stringify(appointments));
-  localStorage.setItem("lifeGoals",JSON.stringify(goals));
-  localStorage.setItem("lifeProblems",JSON.stringify(problems));
+  localStorage.setItem(
+    "myLifeTasks",
+    JSON.stringify(tasks)
+  );
+
+  localStorage.setItem(
+    "myLifeHabits",
+    JSON.stringify(habits)
+  );
+
+  localStorage.setItem(
+    "myLifeAppointments",
+    JSON.stringify(appointments)
+  );
+
+  localStorage.setItem(
+    "myLifeGoals",
+    JSON.stringify(goals)
+  );
+
+  localStorage.setItem(
+    "myLifeProblems",
+    JSON.stringify(problems)
+  );
 
 }
 
@@ -1058,11 +2043,39 @@ function saveAll(){
 function escapeHTML(text){
 
   return String(text)
+
     .replace(/&/g,"&amp;")
+
     .replace(/</g,"&lt;")
+
     .replace(/>/g,"&gt;")
+
     .replace(/"/g,"&quot;")
+
     .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   RENDER
+========================= */
+
+function renderAll(){
+
+  updateHome();
+
+  renderTasks();
+
+  renderHabits();
+
+  renderAppointments();
+
+  renderGoals();
+
+  renderProblems();
+
+  loadDream();
 
 }
 
@@ -1071,13 +2084,7 @@ function escapeHTML(text){
    START
 ========================= */
 
-renderTasks();
-renderHabits();
-renderAppointments();
-renderGoals();
-renderProblems();
-loadDream();
-updateProgress();
+renderAll();
 
 </script>
 
