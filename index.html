@@ -1,1 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Life</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(160deg, #f8efff, #fff7fb);
+      color: #3f3150;
+    }
+
+    .app {
+      max-width: 500px;
+      margin: auto;
+      padding: 24px 18px 40px;
+    }
+
+    .header {
+      text-align: center;
+      padding: 25px 10px;
+    }
+
+    .flower {
+      font-size: 42px;
+    }
+
+    h1 {
+      margin: 8px 0 5px;
+      font-size: 30px;
+    }
+
+    .subtitle {
+      color: #8b7898;
+      margin: 0;
+    }
+
+    .level {
+      background: white;
+      border-radius: 20px;
+      padding: 18px;
+      margin: 15px 0;
+      box-shadow: 0 5px 20px rgba(100, 70, 120, 0.08);
+    }
+
+    .level-title {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .progress-bg {
+      height: 10px;
+      background: #eee4f3;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .progress {
+      width: 20%;
+      height: 100%;
+      background: #b993d6;
+      border-radius: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 18px;
+      border-radius: 20px;
+      margin: 12px 0;
+      box-shadow: 0 5px 20px rgba(100, 70, 120, 0.07);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 19px;
+    }
+
+    .card p {
+      color: #78687f;
+      line-height: 1.5;
+    }
+
+    .points {
+      font-size: 18px;
+      font-weight: bold;
+      color: #9a6bb8;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      padding: 14px;
+      border-radius: 14px;
+      background: #b993d6;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .quote {
+      text-align: center;
+      padding: 20px 10px;
+      color: #806d8a;
+      font-style: italic;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <div class="header">
+      <div class="flower">🌷</div>
+      <h1>MY LIFE</h1>
+      <p class="subtitle">Building my life, piece by piece.</p>
+    </div>
+
+    <div class="level">
+      <div class="level-title">
+        <span>LEVEL 01 — STUCK</span>
+        <span class="points">0 Life Points</span>
+      </div>
+
+      <div class="progress-bg">
+        <div class="progress"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🧭 LIFE MAP</h2>
+      <p>Understand what is holding me back and what kind of life I want to build.</p>
+      <button>Open Life Map</button>
+    </div>
+
+    <div class="card">
+      <h2>🎯 TODAY</h2>
+      <p>Choose only a few real actions for today.</p>
+      <button>My Actions</button>
+    </div>
+
+    <div class="card">
+      <h2>📊 PROGRESS</h2>
+      <p>See whether I am actually moving forward, not just planning.</p>
+      <button>View Progress</button>
+    </div>
+
+    <div class="card">
+      <h2>🔎 WHAT'S MISSING?</h2>
+      <p>Find what is still stuck, what is improving, and what became a habit.</p>
+      <button>Weekly Review</button>
+    </div>
+
+    <div class="card">
+      <h2>🌍 MY LIFE PROJECTS</h2>
+      <p>Health · Study · Money · Stability · Love · Travel · Faith · Joy</p>
+      <button>Open Projects</button>
+    </div>
+
+    <div class="quote">
+      “I don't need a perfect life. I need to keep building mine.”
+    </div>
+
+  </div>
+
+</body>
+</html>
